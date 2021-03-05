@@ -30,23 +30,41 @@ exports.getAllUsers = async (req, res) => {
     });
   };
 
+//Returns user given username
+exports.getUser = async (req, res) => {
+    let user = req.query.username;
+    await User.find({ userName: user })
+        .then((user) => {
+        if (!user) {
+            return res.status(200).send({
+            error: "User not found with an username: " + user,
+            });
+        }
+        res.json(user);
+        })
+        .catch((err) => {
+        res.status(200).send({
+            error: err.message || "An unknown error has occurred.",
+        });
+        });
+    };
+
 //Gets all of the applications given the username
 exports.getAllApplications = async (req, res) => {
     let user = req.query.username;
-    // console.log(req);
     await User.find({ userName: user}, (err, data) => {
         if (err)
         return res.status(200).send({
             message: err.message || "An unknown error occurred",
         });
         //Print out to see the retun
-        // console.log(data[0].applications[0]);
-        res.json(data[0].applications[0]);
+        // console.log(data[0].applications);
+        res.json(data[0].applications);
     });
 };
 
 //Return application given username and company name
-exports.getCompanyApplication = async (req, res) => {
+exports.getApplicationByCompany = async (req, res) => {
     let user = req.query.username;
     let company = req.query.company;
     await User.find({ userName: user}, (err, data) => {
@@ -65,24 +83,4 @@ exports.getCompanyApplication = async (req, res) => {
             message: "Company not found",
         });
     });
-  };
-
-  //Returns user given username
-  exports.readByUsername = async (req, res) => {
-    let tempUser = req.params.username;
-    console.log(tempUser);
-    await User.find({ userName: tempUser })
-      .then((user) => {
-        if (!user) {
-          return res.status(200).send({
-            error: "User not found with an username: " + tempUser,
-          });
-        }
-        res.json(user);
-      })
-      .catch((err) => {
-        res.status(200).send({
-          error: err.message || "An unknown error has occurred.",
-        });
-      });
   };

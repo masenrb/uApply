@@ -7,7 +7,7 @@ const userController = require('../controllers/userController.js'),
 userRouter.get('/', userController.getAllUsers);
 
 //Returns user given username
-userRouter.get('/getuser/:username', userController.readByUsername);
+userRouter.get('/getuser', userController.getUser);
 
 //Creates user (not yet implemented)
 userRouter.post('/post', userController.createUser);
@@ -16,6 +16,6 @@ userRouter.post('/post', userController.createUser);
 userRouter.get('/getApplication', userController.getAllApplications);
 
 //Returns application given username and company name
-userRouter.get('/getApplication/company', userController.getCompanyApplication);
+userRouter.get('/getApplication/company', userController.getApplicationByCompany);
   
 module.exports = userRouter;
