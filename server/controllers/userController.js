@@ -67,17 +67,6 @@ exports.getCompanyApplication = async (req, res) => {
     });
   };
 
-// Retrieve all applications for a user
-exports.getAllUsers = async (req, res) => {
-    await User.find({}, (err, data) => {
-      if (err)
-        return res.status(200).send({
-          message: err.message || "An unknown error occurred",
-        });
-      res.json(data);
-    });
-  };
-
   //Returns user given username
   exports.readByUsername = async (req, res) => {
     let tempUser = req.params.username;
