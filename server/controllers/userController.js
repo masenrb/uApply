@@ -49,9 +49,6 @@ exports.getAllApplications = async (req, res) => {
 exports.getCompanyApplication = async (req, res) => {
     let user = req.query.username;
     let company = req.query.company;
-    let found = false;
-    console.log(req.query);
-    // console.log(req);
     await User.find({ userName: user}, (err, data) => {
       if (err)
         return res.status(200).send({
