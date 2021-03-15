@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/logo.svg";
-import "./DashboardPage.css";
+import "./DashboardPage.scss";
 
 function DashboardPage() {
   return (
