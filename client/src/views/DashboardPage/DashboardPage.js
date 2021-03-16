@@ -1,10 +1,12 @@
 import React from "react";
 import logo from "../../assets/logo.svg";
 import "./DashboardPage.scss";
+import Header from "../../components/Header/Header";
 
 function DashboardPage() {
   return (
     <div className="App">
+      <Header />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
