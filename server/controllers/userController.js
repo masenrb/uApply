@@ -27,9 +27,9 @@ exports.login = async (req, res) => {
   //Check for username
   await User.find({ userName: user })
     .then((user) => {
-      if (!user) {
+      if (!user[0]) {
         return res.status(200).send({
-          error: "User not found with an username: " + user,
+          error: "Username and/or password incorrect",
         });
       }
       //Check for password
