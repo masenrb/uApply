@@ -1,3 +1,4 @@
+const { set } = require("mongoose");
 const User = require("../models/userModel.js");
 
 //Post request create a user
@@ -92,8 +93,13 @@ exports.getAllApplications = async (req, res) => {
   });
 };
 
+//FIX ERROR HANDLING
 //Return application given username and company name
 exports.getApplicationByCompany = async (req, res) => {
+  const settings = req.query;
+  console.log("settings", settings);
+  console.log(req.query.test);
+
   let user = req.query.username;
   let company = req.query.company;
   await User.find({ userName: user }, (err, data) => {
@@ -112,4 +118,12 @@ exports.getApplicationByCompany = async (req, res) => {
       message: "Company not found",
     });
   });
+};
+
+exports.updateApplicationStatus = async (req, res) => {
+  console.log("res", res);
+  let userID = req.userId;
+  let updatedData = req.query;
+
+  // await User.findOneAndUpdate({ _id: })
 };
