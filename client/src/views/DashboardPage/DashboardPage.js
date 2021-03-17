@@ -6,7 +6,6 @@ import Header from "../../components/Header/Header";
 function DashboardPage() {
   return (
     <div className="App">
-      <Header />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

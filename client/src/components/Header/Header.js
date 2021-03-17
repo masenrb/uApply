@@ -12,20 +12,20 @@ export default class Header extends Component {
     super(props);
     this.state = {
       location: "",
-      loggedIn: false,
+      isLandingPage: false,
     };
   }
 
   componentDidMount() {
     this.setState({
       location: this.props.location,
-      loggedIn: this.props.location === "/Landingpage",
+      isLandingPage: this.props.location === "/Landingpage",
     });
   }
 
   render() {
     const { activeItem } = this.state;
-    var { location, loggedIn } = this.state;
+    var { location, isLandingPage } = this.state;
     // if (location !== "/Landingpage") {
     //   this.setState({
     //     location: location,
@@ -48,15 +48,17 @@ export default class Header extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/Landingpage">Home</Nav.Link>
-              {loggedIn && <Nav.Link href="/Dashboard">Dashboard</Nav.Link>}
+              {!isLandingPage && (
+                <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
-          {!loggedIn && (
+          {isLandingPage && (
             <Nav.Item>
               <SignIn></SignIn>
             </Nav.Item>
           )}
-          {loggedIn && (
+          {!isLandingPage && (
             <Nav.Item>
               <Nav.Link>Sign Out</Nav.Link>
             </Nav.Item>
