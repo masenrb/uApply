@@ -31,7 +31,9 @@ $body-default-text: black;
             color: white !important;
             padding: $padding * 2;
         }
-        &>.content {
+        &>.content, .ui.card>.content {
+           padding: $padding * 5 !important;  //SUGGESTION: Remove this for a sleeker look.
+
             &>.header:not(.ui) {
                 @include text-styling(24px);
 
@@ -74,7 +76,12 @@ $body-default-text: black;
     .ui.button {
         @extend %box-styling;
         @include text-styling(12px);
-        padding: $padding + .2;
+        padding: {
+            left: $padding * 5 !important; //SUGGESTION: * 3
+            right: $padding * 5 !important; //SUGGESTION: * 3
+            top: $padding + .2 !important;
+            bottom: $padding + .2 !important;
+        }
     }
 }
 
