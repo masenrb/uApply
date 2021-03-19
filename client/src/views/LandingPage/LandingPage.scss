@@ -34,6 +34,16 @@
   }
 }
 
+.Landing {
+  p {
+    //nest styles for readability!
+    font: {
+      size: calc(10px + 2vmin);
+      family: globals.$body-font;
+    }
+  }
+}
+
 .App-link {
   color: #09d3ac;
 }

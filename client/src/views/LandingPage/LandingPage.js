@@ -1,22 +1,52 @@
-import React from "react";
-import logo from "../../assets/logo.svg";
-import "./LandingPage.css";
+import React, { Component } from "react";
+import HeaderLandingPage from "../../components/Header/HeaderLandingPage";
+// import Header from "../../components/Header/HeaderLandingPage";
+import { Form, Button, Card } from "react-bootstrap";
+import { Grid, Image, Header } from "semantic-ui-react";
+import logo from "../../assets/uApply.png";
 
-function LandingPage() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>This is the landing page.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        ></a>
-      </header>
-    </div>
-  );
+import "./LandingPage.scss";
+
+export default class LandingPage extends Component {
+  render() {
+    return (
+      <div className="App-header">
+        <Grid columns={2} divided>
+          <Grid.Row>
+            <Grid.Column>
+              <Header size="huge">
+                Welcome!
+                <Header.Subheader
+                  style={{
+                    marginTop: "5%",
+                  }}
+                >
+                  Looking for a place to organize all your job/internship
+                </Header.Subheader>
+                <Header.Subheader>
+                  applications and keep track of your professional connections?
+                </Header.Subheader>
+                <Button
+                  style={{
+                    marginTop: "5%",
+                  }}
+                >
+                  Get Started!
+                </Button>
+              </Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Image
+                style={{
+                  marginLeft: "5%",
+                }}
+                size="massive"
+                src={logo}
+              />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
+    );
+  }
 }
-
-export default LandingPage;
