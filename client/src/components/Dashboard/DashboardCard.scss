@@ -1,0 +1,51 @@
+@use '../../_globals.scss'; 
+
+$dropdown-height: 30px;
+$padding: .45rem;
+
+%text-styling {
+    font: {
+        size: 12px;
+        family: globals.$body-font;
+    }
+}
+
+.dropdown-wrapper {
+    width: 175px;
+    height: $dropdown-height;
+
+    .ui.dropdown {
+        border: {
+            style: solid;
+            radius: 4px;
+            width: 1px;
+            color: globals.$desat-accent;
+        }
+        &>.text {
+            @extend %text-styling;
+            padding: $padding;
+        }
+        &>.dropdown.icon {
+            transform: rotate(-90deg);
+            margin: {
+                top: 0;
+                left: 0;
+                right: $padding !important;
+                bottom: 0;
+            }
+            text-align: center;
+            height: $dropdown-height;
+            &:before {
+                font-size: 18px;
+                content: '\276E';
+            }
+        }
+        .menu {
+            width: 100%;
+            &>.item {
+                @extend %text-styling;
+                padding: $padding;
+            }
+        }
+    }
+}
