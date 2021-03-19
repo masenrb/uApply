@@ -1,40 +1,104 @@
 @use '../../_globals.scss'; 
 
 $dropdown-height: 30px;
-$padding: .45rem;
+$padding: .25rem;
+$body-default-text: black;
 
-%text-styling {
+@mixin text-styling($size) {
     font: {
-        size: 12px;
+        size: $size !important;
         family: globals.$body-font;
+        weight: normal !important;
+    }
+    color: $body-default-text !important;
+}
+%box-styling {
+    border: {
+        style: solid;
+        radius: 4px;
+        width: 1px;
+        color: globals.$desat-accent;
+    }
+    background-color: white;
+}
+
+.ui.cards {
+    &>.card {
+        min-width: 385px;
+
+        .meta {
+            @include text-styling(14px);
+            color: white !important;
+            padding: $padding * 2;
+        }
+        &>.content {
+            &>.header:not(.ui) {
+                @include text-styling(24px);
+
+            }
+            &>.description {
+                @include text-styling(14px);
+            }
+            &>.extra {
+                margin-top: 20px;
+
+                h6 {
+                    font: {
+                        size: 10px;
+                        family: globals.$accent-font;
+                    }
+                    color: globals.$desat-accent;
+                    margin-bottom: 3px;
+                }
+            }
+        }
+    }
+}
+
+.phase-filling {
+    background-color: darkgoldenrod;
+}
+.phase-awaiting {
+    background-color: green;
+}
+.phase-interview {
+    background-color: blue;
+}
+.phase-offer {
+    background-color: red;
+}
+
+.button-wrapper {
+    float: right;
+
+    .ui.button {
+        @extend %box-styling;
+        @include text-styling(12px);
+        padding: $padding + .2;
     }
 }
 
 .dropdown-wrapper {
     width: 175px;
     height: $dropdown-height;
+    float: left;
 
     .ui.dropdown {
-        border: {
-            style: solid;
-            radius: 4px;
-            width: 1px;
-            color: globals.$desat-accent;
-        }
+        @extend %box-styling;
         &>.text {
-            @extend %text-styling;
-            padding: $padding;
+            @include text-styling(12px);
+            padding: $padding $padding*1.5;
         }
         &>.dropdown.icon {
             transform: rotate(-90deg);
             margin: {
                 top: 0;
                 left: 0;
-                right: $padding !important;
+                right: $padding*1.5 !important;
                 bottom: 0;
             }
             text-align: center;
-            height: $dropdown-height;
+            height: $dropdown-height - 5px;
             &:before {
                 font-size: 18px;
                 content: '\276E';
@@ -43,8 +107,13 @@ $padding: .45rem;
         .menu {
             width: 100%;
             &>.item {
-                @extend %text-styling;
-                padding: $padding;
+                @include text-styling(12px);
+                padding: {
+                    left: $padding*2 !important;
+                    right: $padding*2 !important;
+                    top: $padding*2 !important;
+                    bottom: $padding*2 !important;
+                }
             }
         }
     }

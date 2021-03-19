@@ -1,42 +1,53 @@
 import React, { useState } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Card, Button } from "semantic-ui-react";
+import { phaseDictionary, phaseList } from "../utils/phases.js";
 import "./DashboardCard.scss";
 
 const DashboardCard = (props) => {
     /*
     * For the dropdown, this state will need to be stored somewhere. Database? How do we ensure that on refresh everything stays in the right category?
-    * The const list of phases should be usable globally as some kind of util. Or the dropdown should be abstracted out.
-    * The cards should be externally populated--mimic this with a const.
+    * The cards should be externally populated through props.
     */
-    const [appPhase, setAppPhase] = useState('Creating Application')
-    const phaseList = [
-        {key: 'Creating Application',
-        text: 'Creating Application',
-        value: 'Creating Application'},
-        {key: 'Awaiting Response',
-        text: 'Awaiting Response',
-        value: 'Awaiting Response'},
-        {key: 'Interview Scheduled',
-        text: 'Interview Scheduled',
-        value: 'Interview Scheduled'},
-        {key: 'Offer Received',
-        text: 'Offer Received',
-        value: 'Offer Received'}
-    ]
+
+    /*TEMP */
+    let propsphase = 'Filling Application';
+    let propssal = '$90,000/year';
+    let propsloc = 'Los Angelos, CA, USA';
+    let propstitle= 'Project Engineer';
+    let propscompany= 'Twitter';
+
+    const phase = phaseDictionary[propsphase];
+    const [appPhase, setAppPhase] = useState('Filling Application')
 
     return (
-        <div className='dashboard-card'>
-            <div className='dropdown-wrapper'>
-                {/*UseSemanticUICard*/}
-                <Dropdown 
-                    value={appPhase} //By default, 'Creating Application'
-                    selected
-                    fluid
-                    options={phaseList}
-                    onChange={(e) => setAppPhase(e.target.value)}
-                />
-            </div>
-        </div>
+        <Card>
+            <Card.Meta className={`phase-${phase}`} textAlign="center">{propscompany}</Card.Meta>
+            <Card.Content>
+                <Card.Header>{propstitle}</Card.Header>
+                <Card.Description>
+                    <strong>Salary: </strong>{propssal}
+                    <br/>
+                    <strong>Location: </strong>{propsloc}
+                </Card.Description>
+                <Card.Content extra>
+                    <h6>Phase</h6>
+                    <div>
+                        <div className='dropdown-wrapper'>
+                            <Dropdown 
+                                value={appPhase} //By default, 'Filling Application'
+                                selected
+                                fluid
+                                options={phaseList}
+                                onChange={(e) => setAppPhase(e.target.value)}
+                            />
+                        </div>
+                        <div className='button-wrapper'>
+                            <Button>View</Button>
+                        </div>
+                    </div>
+                </Card.Content>
+            </Card.Content>
+        </Card>
     )
 }
 
