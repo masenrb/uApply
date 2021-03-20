@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown, Card, Button } from "semantic-ui-react";
-import { phaseDictionary, phaseList } from "../utils/phases.js";
+import { phaseDictionary, phaseList } from "../../utils/phases.js";
 import "./DashboardCard.scss";
 
 const DashboardCard = (props) => {
