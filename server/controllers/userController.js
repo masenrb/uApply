@@ -20,6 +20,34 @@ exports.createUser = async (req, res) => {
     });
 };
 
+//Returns user if given correct credentials
+exports.login = async (req, res) => {
+  let user = req.query.username;
+  let password = req.query.password;
+  //Check for username
+  await User.find({ userName: user })
+    .then((user) => {
+      if (!user[0]) {
+        return res.status(200).send({
+          error: "Username and/or password incorrect",
+        });
+      }
+      //Check for password
+      if (user[0].password === password) {
+        res.json(user);
+      } else {
+        return res.status(200).send({
+          error: "Username and/or password incorrect",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
 /* Retrieve all the directory, Users*/
 exports.getAllUsers = async (req, res) => {
   await User.find({}, (err, data) => {
