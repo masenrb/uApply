@@ -122,8 +122,20 @@ exports.getApplicationByCompany = async (req, res) => {
 
 exports.updateApplicationStatus = async (req, res) => {
   console.log("res", res);
-  let userID = req.userId;
   let updatedData = req.query;
+  const userID = req.query.userID;
+  const newApplicationStatus = req.query.applicationStatus;
+  const applicationName = req.query.applicationName;
+  console.log("new ", updatedData)
+  console.log()
+  await User.findOneAndUpdate({ _id: userID }, newApplicationStatus, (err, data) => {
+    console.log("data, ", data)
+    console.log(data.applications)
+    console.log(applicationName);
+    //Got company object by name, was testing twitter:
+    console.log("twitter", data.applications.filter(element => element.companyName === applicationName));
+
+  });
 
   // await User.findOneAndUpdate({ _id: })
 };
