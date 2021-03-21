@@ -8,6 +8,9 @@ $module-height: 535px;
         height: $module-height;
         width: 484px;
         box-sizing: border-box;
+        border-radius: 12px 12px 12px 12px;
+        box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .5);
+        border: solid 1px globals.$light-gray;
 
         &>.ui.segment.agenda-header {
             height: $module-height * .1;
@@ -20,6 +23,7 @@ $module-height: 535px;
             &>* {
                 color: globals.$white;
             }
+            border-radius: 11px 11px 0px 0px;
         }
         &>.agenda-list{
             border: {
@@ -29,6 +33,7 @@ $module-height: 535px;
                 right: 1rem;
                 style: solid;
                 color: transparent;
+                radius: 0px 0px 12px 12px !important;
             }
             padding: {
                 top: 1rem;
@@ -60,6 +65,10 @@ $module-height: 535px;
         .ui.card {
             width: 100%;
             text-align: left;
+            &>.content>span>.button-more {
+                float: right;
+            }
+    
         }
     }
 }

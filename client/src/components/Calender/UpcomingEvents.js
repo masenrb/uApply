@@ -94,7 +94,7 @@ const Event = ({event}) => {
                 <Card.Content>
                     <span>
                         {event.header}{event.date ? ` - ${daysUntil(event.date)}` : null}
-                        <Button icon='ellipsis horizontal'></Button>
+                        <Button className='button-more' icon='ellipsis horizontal'></Button>
                     </span>
                 </Card.Content>
             </Card>
