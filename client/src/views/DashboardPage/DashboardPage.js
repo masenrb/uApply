@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "../../assets/logo.svg";
 import "./DashboardPage.scss";
-import Header from "../../components/Header/Header";
 
 function DashboardPage() {
   return (
@@ -11,12 +10,6 @@ function DashboardPage() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        ></a>
       </header>
     </div>
   );
