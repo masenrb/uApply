@@ -54,7 +54,6 @@ $module-height: 535px;
             &::-webkit-scrollbar-track {
                 margin-top: 1rem;
                 margin-bottom: 1rem;
-                padding: .2rem;
             }
         }
     }
@@ -65,10 +64,38 @@ $module-height: 535px;
         .ui.card {
             width: 100%;
             text-align: left;
-            &>.content>span>.button-more {
-                float: right;
+            margin-top: .75rem;
+            margin-bottom: .75rem;
+            border: solid 3px globals.$dark-gray;
+            border-radius: 7px;
+            box-shadow: none;
+
+            &>.content {
+                padding: .75rem;
+
+                &>span {
+                    vertical-align: middle;
+                    &>.button-more {
+                        float: right;
+                        background-color: transparent;
+                        border: solid 2px globals.$dark-teal;
+                        border-radius: 12px;
+                        width: 2.5em;
+                        height: 2.5rem;
+                        padding: .5rem;
+                        &:hover {
+                            background-color: lighten(globals.$light-gray, 45%);
+                        }
+                        &:active {
+                            background-color: lighten(globals.$light-gray, 25%);
+                        }
+                        &>i {
+                            color: globals.$dark-teal;
+                            transform: scale(1.25);
+                        }
+                    }
+                }
             }
-    
         }
     }
 }
