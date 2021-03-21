@@ -5,14 +5,13 @@ const userSchema = new mongoose.Schema(
   {
     userName: { type: String, required: true },
     password: { type: String, required: true },
-    stats: [
+    stats:
       {
         totalApplications: { type: Number, required: false },
         interviewCount: { type: Number, required: false },
         offers: { type: Number, required: false },
         rejections: { type: Number, required: false },
       },
-    ],
     applications: [
       {
         companyName: { type: String, required: true },

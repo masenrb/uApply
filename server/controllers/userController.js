@@ -113,3 +113,16 @@ exports.getApplicationByCompany = async (req, res) => {
     });
   });
 };
+
+  //Return all stats given username
+  exports.getAllStats = async (req, res) => {
+    let user = req.query.username;
+    await User.find({ userName: user}, (err, data) => {
+        if (err)
+        return res.status(200).send({
+            message: err.message || "An unknown error occurred",
+        });
+        
+        return res.json(data[0].stats);
+    });
+  };
