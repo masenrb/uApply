@@ -150,6 +150,33 @@
 			"response": []
 		},
 		{
+			"name": "GetAllStats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/users/getStats?username=Eric",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"getStats"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Eric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "temp",
 			"request": {
 				"method": "GET",
