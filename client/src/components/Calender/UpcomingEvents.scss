@@ -10,7 +10,7 @@ $module-height: 535px;
         box-sizing: border-box;
 
         &>.ui.segment.agenda-header {
-            height: 55px;
+            height: $module-height * .1;
             flex: {
                 grow: 0;
                 shrink: 0;
@@ -19,9 +19,9 @@ $module-height: 535px;
         }
         &>.agenda-list{
             border: {
-                top: 1rem;
-                bottom: 1rem;
-                left: 1rem;
+                top: 0rem;
+                bottom: 0rem;
+                left: 0rem;
                 right: 1rem;
                 style: solid;
                 color: transparent;
@@ -39,5 +39,11 @@ $module-height: 535px;
     }
     .ui.cards {
         margin: auto;
+        display: block;
+        
+        .ui.card {
+            width: 100%;
+            text-align: left;
+        }
     }
 }
