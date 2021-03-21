@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { Form, Nav, Card } from "react-bootstrap";
-import { Modal, Button, Header, Image } from "semantic-ui-react";
-import logo from "../../assets/uApply.png";
+import React from "react";
+import { Form, Nav } from "react-bootstrap";
+import { Modal, Button, Header } from "semantic-ui-react";
 
 import "./SignIn.scss";
 
