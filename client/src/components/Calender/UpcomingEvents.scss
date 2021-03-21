@@ -1,0 +1,43 @@
+@use '../../_globals.scss';
+
+$module-height: 535px;
+.upcoming-events {
+    .ui.segments {
+        display: flex;
+        flex-flow: column;
+        height: $module-height;
+        width: 484px;
+        box-sizing: border-box;
+
+        &>.ui.segment.agenda-header {
+            height: 55px;
+            flex: {
+                grow: 0;
+                shrink: 0;
+                basis: auto;
+            }
+        }
+        &>.agenda-list{
+            border: {
+                top: 1rem;
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+                style: solid;
+                color: transparent;
+            }
+            flex: {
+                grow: 0;
+                shrink: 1;
+                basis: auto;
+            }
+            overflow: auto;
+            padding: 1rem;
+            // box-shadow: none;
+            // border: none;
+        }
+    }
+    .ui.cards {
+        margin: auto;
+    }
+}
