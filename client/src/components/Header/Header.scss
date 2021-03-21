@@ -1,5 +1,38 @@
-@use '../../_globals.scss'; 
+@use '../../_globals.scss';
 
+$padding-left: .5rem;
+$img-scale: 1.35;
 .navbar {
     background-color: globals.$dark-sat-blue;
+    
+    .navbar-brand {
+        margin-right: 1.5rem;
+    }
+    a>img {
+        filter: invert(100%);
+        transform: scale($img-scale);
+    }
+    .nav-item>.nav-link {
+
+    }
+    padding-left: $padding-left * $img-scale * 2.5 !important;
+}
+.navbar-light {
+    .navbar-toggler {
+        border-color: globals.$white !important;
+        color: globals.$white !important;
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+    }
+    .navbar-nav .nav-link {
+        color: globals.$white !important;
+        font: {
+            family: globals.$body-font;
+            size: 1.10rem;
+        }
+    }    
+}
+.nav-item>a {
+    color: globals.$white !important;
 }

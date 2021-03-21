@@ -39,7 +39,7 @@ export default class Header extends Component {
 
     return (
       <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg">
           <Navbar.Brand href="/Landingpage">
             <Image style={{ width: "60px" }} src={logo} />
           </Navbar.Brand>
@@ -54,7 +54,7 @@ export default class Header extends Component {
           </Navbar.Collapse>
           {isLandingPage && (
             <Nav.Item>
-              <SignIn></SignIn>
+              <SignIn />
             </Nav.Item>
           )}
           {!isLandingPage && (
