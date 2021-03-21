@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import HeaderLandingPage from "../../components/Header/HeaderLandingPage";
-// import Header from "../../components/Header/HeaderLandingPage";
-import { Form, Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Grid, Image, Header } from "semantic-ui-react";
 import logo from "../../assets/uApply.png";
 
