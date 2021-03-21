@@ -1,16 +1,15 @@
 import React from "react";
-import logo from "../../assets/logo.svg";
+import { Card } from "semantic-ui-react";
+import DashboardCard from "../../components/Dashboard/DashboardCard";
 import "./DashboardPage.scss";
 
-function DashboardPage() {
+const DashboardPage = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+    <div className="dashboard">
+      <Card.Group>
+        <DashboardCard/>
+      </Card.Group>
     </div>
   );
 }
