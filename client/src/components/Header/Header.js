@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { useHistory } from "react-router-dom";
 import { Image } from "semantic-ui-react";
 import { Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
@@ -24,8 +23,8 @@ export default class Header extends Component {
   }
 
   render() {
-    const { activeItem } = this.state;
-    var { location, isLandingPage } = this.state;
+    // const { activeItem } = this.state;
+    var { isLandingPage } = this.state;
     // if (location !== "/Landingpage") {
     //   this.setState({
     //     location: location,
@@ -40,7 +39,7 @@ export default class Header extends Component {
 
     return (
       <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg">
           <Navbar.Brand href="/Landingpage">
             <Image style={{ width: "60px" }} src={logo} />
           </Navbar.Brand>
@@ -55,7 +54,7 @@ export default class Header extends Component {
           </Navbar.Collapse>
           {isLandingPage && (
             <Nav.Item>
-              <SignIn></SignIn>
+              <SignIn />
             </Nav.Item>
           )}
           {!isLandingPage && (

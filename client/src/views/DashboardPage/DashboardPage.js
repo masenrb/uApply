@@ -1,13 +1,18 @@
 import React from "react";
-import logo from "../../assets/logo.svg";
+import { Card } from "semantic-ui-react";
+import DashboardCard from "../../components/Dashboard/DashboardCard";
 import "./DashboardPage.scss";
 import Header from "../../components/Header/Header";
 import UpcomingEvents from "../../components/Calender/UpcomingEvents.js";
 
 
-function DashboardPage() {
+const DashboardPage = () => {
+
   return (
-    <div className="App">
+    <div className="dashboard">
+      <Card.Group>
+        <DashboardCard/>
+      </Card.Group>
       <UpcomingEvents />
     </div>
   );
