@@ -16,6 +16,10 @@ $module-height: 535px;
                 shrink: 0;
                 basis: auto;
             }
+            background-color: globals.$dark-teal;
+            &>* {
+                color: globals.$white;
+            }
         }
         &>.agenda-list{
             border: {
@@ -26,21 +30,33 @@ $module-height: 535px;
                 style: solid;
                 color: transparent;
             }
+            padding: {
+                top: 1rem;
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+            }
+    
             flex: {
                 grow: 0;
                 shrink: 1;
                 basis: auto;
             }
             overflow: auto;
-            padding: 1rem;
             // box-shadow: none;
             // border: none;
+
+            &::-webkit-scrollbar-track {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                padding: .2rem;
+            }
         }
     }
     .ui.cards {
         margin: auto;
         display: block;
-        
+
         .ui.card {
             width: 100%;
             text-align: left;
