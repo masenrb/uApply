@@ -10,6 +10,8 @@ export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoggedIn: false,
+      user: 0,
       location: "",
       isLandingPage: false,
     };
@@ -17,25 +19,19 @@ export default class Header extends Component {
 
   componentDidMount() {
     this.setState({
+      user: this.props.user,
       location: this.props.location,
       isLandingPage: this.props.location === "/Landingpage",
     });
   }
 
+  signOut() {
+    this.setState({ user: 0, isLoggedIn: false });
+    this.props.history.push("/Landingpage");
+  }
+
   render() {
-    // const { activeItem } = this.state;
-    var { isLandingPage } = this.state;
-    // if (location !== "/Landingpage") {
-    //   this.setState({
-    //     location: location,
-    //     isLandingPage: false,
-    //   });
-    // } else {
-    //   this.setState({
-    //     location: location,
-    //     isLandingPage: true,
-    //   });
-    // }
+    const { isLandingPage, isLoggedIn } = this.state;
 
     return (
       <div>
@@ -59,7 +55,7 @@ export default class Header extends Component {
           )}
           {!isLandingPage && (
             <Nav.Item>
-              <Nav.Link>Sign Out</Nav.Link>
+              <Nav.Link href="/Landingpage">Sign Out</Nav.Link>
             </Nav.Item>
           )}
         </Navbar>
