@@ -18,11 +18,18 @@ $primary-blue:#2A59FF;
 $desat-accent: #949494;
 $dark-gray: #343A40;
 $light-gray: #6C757D;
+$very-light-gray: #BFC4CA;
 $white: white;
 
 /*Font Assignments*/
 $body-font: 'Montserrat', sans-serif;
 $accent-font: 'Allerta', sans-serif;
+
+/*Utils*/
+$header-height: 50.25px;
+body {
+    background-color: $light-desat-blue !important;
+}
 
 /*Media Queries
 call like @include media(tablet) {//styles here}

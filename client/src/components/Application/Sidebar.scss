@@ -1,0 +1,9 @@
+@use '../../_globals.scss';
+
+.sidebar {
+    width: 132px;
+    height: 100%;
+    background-color: globals.$dark-gray;
+    margin: 0;
+    float: left;
+}

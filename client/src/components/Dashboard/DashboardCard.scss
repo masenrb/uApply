@@ -25,7 +25,7 @@ $body-default-text: black;
 .ui.cards {
     &>.card {
         min-width: 385px;
-        box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .5) !important;
+        box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .6) !important;
         border: solid 1px globals.$desat-accent !important;
     
 
