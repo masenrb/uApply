@@ -28,9 +28,9 @@ exports.login = async (req, res) => {
   //Check for username
   await User.find({ userName: user })
     .then((user) => {
-      if (!user) {
+      if (!user[0]) {
         return res.status(200).send({
-          error: "User not found with an username: " + user,
+          error: "Username and/or password incorrect",
         });
       }
       //Check for password
@@ -65,9 +65,9 @@ exports.getUser = async (req, res) => {
   let user = req.query.username;
   await User.find({ userName: user })
     .then((user) => {
-      if (!user) {
+      if (!user[0]) {
         return res.status(200).send({
-          error: "User not found with an username: " + user,
+          error: "User not found",
         });
       }
       res.json(user);
@@ -93,25 +93,22 @@ exports.getAllApplications = async (req, res) => {
   });
 };
 
-//FIX ERROR HANDLING
 //Return application given username and company name
 exports.getApplicationByCompany = async (req, res) => {
   const settings = req.query;
-  console.log("settings", settings);
-  console.log(req.query.test);
-
   let user = req.query.username;
   let company = req.query.company;
-  await User.find({ userName: user }, (err, data) => {
-    if (err)
+  await User.find({ userName: user })
+    .then((user) => {
+    if (!user[0])
       return res.status(200).send({
-        message: err.message || "An unknown error occurred",
+        message: "User not found",
       });
 
     //Loop through applications array and check for match
-    for (i = 0; i < data[0].applications.length; i++) {
-      if (data[0].applications[i].companyName == company) {
-        return res.json(data[0].applications[i]);
+    for (i = 0; i < user[0].applications.length; i++) {
+      if (user[0].applications[i].companyName == company) {
+        return res.json(user[0].applications[i]);
       }
     }
     return res.status(200).send({
@@ -119,6 +116,7 @@ exports.getApplicationByCompany = async (req, res) => {
     });
   });
 };
+
 
 exports.updateApplicationStatus = async (req, res) => {
   console.log("res", res);
@@ -128,12 +126,16 @@ exports.updateApplicationStatus = async (req, res) => {
   const applicationName = req.query.applicationName;
   console.log("new ", updatedData)
   console.log()
-  await User.findOneAndUpdate({ _id: userID }, newApplicationStatus, (err, data) => {
+  await User.findOneAndUpdate({ _id: userID, applications : { $elemMatch: { companyName: applicationName}} }, newApplicationStatus, (err, data) => {
     console.log("data, ", data)
     console.log(data.applications)
     console.log(applicationName);
     //Got company object by name, was testing twitter:
-    console.log("twitter", data.applications.filter(element => element.companyName === applicationName));
+    let application = data.applications.filter(element => element.companyName === applicationName);
+    console.log("status", application[0]);
+    
+
+    console.log("twitter", application);
 
   });
 
