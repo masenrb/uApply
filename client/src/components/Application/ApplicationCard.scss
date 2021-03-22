@@ -1,0 +1,49 @@
+@use '../../_globals.scss';
+
+$dropdown-height: 30px;
+$padding: 0.25rem;
+$body-default-text: black;
+
+@mixin text-styling($size) {
+  font: {
+    size: $size !important;
+    family: globals.$body-font;
+    weight: normal !important;
+  }
+  color: $body-default-text !important;
+}
+
+.header_container {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  left: 10px;
+  background-color: #2a6f97;
+  border-radius: 6px 6px 0px 0px;
+  padding: $padding * 2 !important;
+}
+
+.header_text {
+  @include text-styling(14px);
+  color: white !important;
+}
+
+.description_container {
+  position: relative;
+  min-width: 400px;
+  min-height: 260px;
+  box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, 0.5) !important;
+  border: solid 1px globals.$desat-accent !important;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: $padding * 5 !important;
+}
+
+.descript_size {
+  width: 400px;
+}
+
+.descript_text {
+  @include text-styling(14px);
+  color: rgb(0, 0, 0) !important;
+}
