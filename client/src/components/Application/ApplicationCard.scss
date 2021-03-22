@@ -6,44 +6,73 @@ $body-default-text: black;
 
 @mixin text-styling($size) {
   font: {
-    size: $size !important;
+    size: $size;
     family: globals.$body-font;
-    weight: normal !important;
+    weight: normal;
   }
   color: $body-default-text !important;
 }
 
-.header_container {
+.application-card-full {
+  width: 100%;
+}
+.application-card-half {
+  width: 45%;
+}
+.height-half {
+  height: 185px;
+}
+.height-full {
+  height: 215px;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.application-card-full, .application-card-half {
   position: relative;
-  width: 100px;
-  height: 30px;
-  left: 10px;
-  background-color: #2a6f97;
-  border-radius: 6px 6px 0px 0px;
-  padding: $padding * 2 !important;
+  display: inline-block;
+
+  .header_container {
+    position: relative;
+    width: 150px;
+    height: 35px;
+    left: 10px;
+    background-color: #2a6f97;
+    border-radius: 6px 6px 0px 0px;
+    padding: $padding * 2 !important;
+  }
+  
+  .header_text {
+    h6 {
+      @include text-styling(18px);
+      color: white !important;
+      font-weight: bold;
+    }
+  }
+  
+  .description_container {
+    width: 100%;
+    height: calc(100% - 35px);
+    position: relative;
+    box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, 0.6) !important;
+    border: solid 1px globals.$desat-accent !important;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: $padding * 5 !important;
+    overflow: auto;
+    
+    &::-webkit-scrollbar-track {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .descript_text {
+    @include text-styling(14px);
+    color: rgb(0, 0, 0) !important;
+  }
 }
 
-.header_text {
-  @include text-styling(14px);
-  color: white !important;
-}
-
-.description_container {
-  position: relative;
-  min-width: 400px;
-  min-height: 260px;
-  box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, 0.5) !important;
-  border: solid 1px globals.$desat-accent !important;
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: $padding * 5 !important;
-}
-
-.descript_size {
-  width: 400px;
-}
-
-.descript_text {
-  @include text-styling(14px);
-  color: rgb(0, 0, 0) !important;
-}

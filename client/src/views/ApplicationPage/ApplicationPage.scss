@@ -9,7 +9,7 @@
     }
     background-color: white;
     height: 100%;
-    box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .5);
+    box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .6);
 }
 @mixin text-styling($size) {
     font: {
@@ -37,7 +37,6 @@ $padding: 1rem;
     width: 100vw;
 }
 .application {
-    background-color: globals.$light-desat-blue;
     height: calc(100vh - #{globals.$header-height});
     float: right;
     width: calc(100% - 132px);
@@ -63,25 +62,33 @@ $padding: 1rem;
             border-top-left-radius: 0px;
             border-bottom-left-radius: 0px;
             float: right;
-            width: 308px;
-            height: 72px;
+            width: 250px;
+            height: 60px;
             margin: 0px;
 
             .dollarsign {
                 display: inline-block;
                 font-size: 30px;
                 font-family: globals.$body-font;
-                padding: 1rem;
                 border-right: solid 1px globals.$very-light-gray;
                 width: 20%;
+                height: 100%;
                 text-align: center;
+                padding-top: .5rem;
             }
             h2 {
                 display: inline-block;
                 font-weight: normal;
                 font-size: 30px;
-                padding: 1rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
+        }
+        .float-right {
+            float: right;
+        }
+        .float-left {
+            float: left;
         }
     }
     .column-2 {
@@ -101,7 +108,7 @@ $padding: 1rem;
             .ui.dropdown {
                 @extend %box-styling;
                 padding: $padding $padding*1.5;
-                box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .5);
+                box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .6);
 
                 &>.text {
                     @include text-styling(20px);
@@ -136,5 +143,14 @@ $padding: 1rem;
                 }
             }
         }
+    }
+    .inline {
+        display: inline-block;
+    }
+    .description {
+        margin-top: 3.5rem;
+    }
+    .benqual {
+        margin-top: 1.75rem;
     }
 }

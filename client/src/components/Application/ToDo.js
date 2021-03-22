@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { Segment, List, Header, Checkbox} from "semantic-ui-react";
+import CustomCheckbox from './CustomCheckbox'
 import "./ToDo.scss";
-
-const checkboxClassOrder = {
-    checkbox: 'indeterminate',
-    indeterminate: 'checked',
-    checked: 'checkbox'
-}
 
 /*Indeterminate class change doesn't show.
 * Can't figure out how to change checkbox border color
@@ -37,29 +32,6 @@ const ToDo = (props) => {
             </Segment.Group>
         </div>
     )
-}
-const CustomCheckbox = (props) => {
-    const [state, setState] = useState('checkbox');
-
-    return (
-        <Checkbox label={props.item} id={`td-${props.index}`} onClick={(e) => checkboxClick(`td-${props.index}`, e, state, setState)}/>
-    )
-}  
-
-/*DOES NOT FUNCTION. Why?*/
-const checkboxClick = (id, event, state, setState) => { 
-    let nextClass = checkboxClassOrder[state];
-    if(nextClass == 'checkbox') {
-        event.target.parentNode.classList.remove(state);
-    }
-    else if (state === 'checkbox') {
-        event.target.parentNode.classList.add(nextClass);
-    }
-    else {
-        event.target.parentNode.classList.remove(state);
-        event.target.parentNode.classList.add(nextClass);
-    }
-    setState(nextClass);
 }
 
 export default ToDo;

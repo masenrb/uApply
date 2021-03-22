@@ -27,6 +27,9 @@ $accent-font: 'Allerta', sans-serif;
 
 /*Utils*/
 $header-height: 50.25px;
+body {
+    background-color: $light-desat-blue !important;
+}
 
 /*Media Queries
 call like @include media(tablet) {//styles here}
