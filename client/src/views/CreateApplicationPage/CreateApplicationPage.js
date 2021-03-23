@@ -127,6 +127,7 @@ const CreateApplicationPage = (props) => {
         <Form>
           <div className="application">
             <div className="column-1">
+              <Form.Group widths="equal">
               <Form.Field>
                 <label>Company</label>
                 <input
@@ -142,6 +143,7 @@ const CreateApplicationPage = (props) => {
                   onChange={(e) => setCompany(e.target.value)}
                 />
               </Form.Field>
+              </Form.Group>
 
               <Form.Group widths="equal">
                 <Form.Input
@@ -172,7 +174,7 @@ const CreateApplicationPage = (props) => {
                 <ApplicationCard
                   title="Benefits"
                   width="half"
-                  height="full"
+                  height="less-full"
                   float="left"
                 >
                   <form>
@@ -190,7 +192,7 @@ const CreateApplicationPage = (props) => {
                 <ApplicationCard
                   title="Qualifications"
                   width="half"
-                  height="full"
+                  height="less-full"
                   float="right"
                 >
                   <form>
