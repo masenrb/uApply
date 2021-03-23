@@ -18,6 +18,7 @@ import "../../components/Application/ToDo.scss";
 import $ from "jquery";
 import UserContext from "../../utils/UserContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // import { updateApplicationStatus } from "../../../../server/controllers/userController";
 
 const CreateApplicationPage = (props) => {
@@ -209,9 +210,11 @@ const CreateApplicationPage = (props) => {
               </div>
 
               <div class="submit">
-                <Button color="red" onClick={save}>
-                  Save Application
-                </Button>
+                <Link to="/Dashboard">
+                  <Button color="red" onClick={save}>
+                    Save Application
+                  </Button>
+                </Link>
               </div>
             </div>
 
