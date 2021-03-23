@@ -126,12 +126,10 @@ exports.updateApplicationStatus = async (req, res) => {
   userData = await User.findById(userID)
     .then((user) => {
       if (!user) {
-        console.log("no user");
-        return res.status(400).send({
+          return res.status(400).send({
           message: "User not found",
         });
       }
-      console.log("user ", user);
       return user;
     })
     .catch(() => {
@@ -145,6 +143,7 @@ exports.updateApplicationStatus = async (req, res) => {
     return;
   }
 
+  //Add switch statement for adding to statistics
   for (var i = 0; i < userData.applications.length; i++) {
     if(userData.applications[i].companyName === company) {
       if (!newApplicationStatus) {
@@ -165,6 +164,165 @@ exports.updateApplicationStatus = async (req, res) => {
       message: "Not updated",
     });
   }
+};
+
+exports.createApplication = async (req, res) => {
+  let applicationInputs = req.query;
+  userData = await User.findById(applicationInputs.userID)
+    .then((user) => {
+      if (!user) {
+        return res.status(400).send({
+          message: "User not found",
+        });
+      }
+      return user;
+    })
+    .catch(() => {
+      return res.status(400).send({
+        error: "Incorrect User ID catch",
+      });
+    });
+  let newApplication = {
+    companyName: "",
+    jobTitle: "",
+    location: "",
+    description: "",
+    salary: 0,
+    benefits: [],
+    qualifications: [],
+    toDo: [],
+    status: "",
+    contacts: [],
+    notes: [],
+    events: [],
+    notifications: {
+        feedbackEmails: "bool",
+        notificationEmails: "bool",
+        upcomingEvents: "bool",
+        weeklyReport: "bool",
+        agenda: "bool",
+    },
+    applicationStats: {
+        interviewCount: 0,
+        offer: "bool",
+        rejection: "bool",
+    },
+  }
+
+  if (applicationInputs.companyName) {
+    newApplication.companyName = applicationInputs.companyName;
+  }
+  if (applicationInputs.jobTitle) {
+    newApplication.jobTitle = applicationInputs.jobTitle;
+  }
+  if (applicationInputs.location) {
+    newApplication.location = applicationInputs.location;
+  }
+  if (applicationInputs.description) {
+    newApplication.description = applicationInputs.description;
+  }
+  if (applicationInputs.salary) {
+    newApplication.salary = applicationInputs.salary;
+  }
+  if (applicationInputs.benefits) {
+    for (var i = 0; i < applicationInputs.benefits.length; i++) {
+      newApplication.benefits.push(applicationInputs.benefits[i]);
+    }
+  }
+  if (applicationInputs.qualifications) {
+    for (var i = 0; i < applicationInputs.qualifications.length; i++) {
+      newApplication.qualifications.push(applicationInputs.qualifications[i]);
+    }
+  }
+  if (applicationInputs.toDo) {
+    for (var i = 0; i < applicationInputs.toDo.length; i++) {
+      newApplication.toDo.push(applicationInputs.toDo[i]);
+    }
+  }
+  if (applicationInputs.status) {
+    newApplication.status = applicationInputs.status;
+  }
+  if (applicationInputs.contacts) {
+    for (var i = 0; i < applicationInputs.contacts.length; i++) {
+      var newContact = {};
+      if (applicationInputs.contacts[i].name){
+        newContact.name = applicationInputs.contacts[i].name;
+      }
+      if (applicationInputs.contacts[i].email){
+        newContact.email = applicationInputs.contacts[i].email;
+      }
+      if (applicationInputs.contacts[i].phoneNumber){
+        newContact.phoneNumber = applicationInputs.contacts[i].phoneNumber;
+      }
+      if (applicationInputs.contacts[i].notes){
+        newContact.notes = applicationInputs.contacts[i].notes;
+      }
+      if (applicationInputs.contacts[i].lastContactDate){
+        newContact.lastContactDate = new Date(applicationInputs.contacts[i].lastContactDate);
+      } else {
+        newContact.lastContactDate = new Date();
+      }
+      if (applicationInputs.contacts[i].lastContactNotes){
+        newContact.lastContactNotes = applicationInputs.contacts[i].lastContactNotes;
+      }
+      newApplication.contacts.push(newContact);
+    }
+    if (applicationInputs.notes) {
+      for (var i = 0; i < applicationInputs.notes.length; i++) {
+        newApplication.notes.push(applicationInputs.notes[i]);
+      }
+    }
+    if (applicationInputs.events) {
+      for (var i = 0; i < applicationInputs.events.length; i++) {
+        var newEvent = {};
+        if (applicationInputs.events[i].eventTitle){
+          newEvent.eventTitle = applicationInputs.events[i].eventTitle;
+        }
+        if (applicationInputs.events[i].eventDate){
+          newEvent.eventDate = new Date(applicationInputs.events[i].eventDate);
+        } else {
+          newEvent.eventDate = new Date();
+        }
+        if (applicationInputs.events[i].notes){
+          newEvent.notes = applicationInputs.events[i].notes;
+        }
+        if (applicationInputs.events[i].phase){
+          newEvent.phase = applicationInputs.events[i].phase;
+        }
+      }
+    }
+    if (applicationInputs.notifications) {
+      if (applicationInputs.notifications.feedbackEmails){
+        newApplication.notifications.feedbackEmails = applicationInputs.notifications.feedbackEmails;
+      }
+      if (applicationInputs.notifications.notificationEmails){
+        newApplication.notifications.notificationEmails = applicationInputs.notifications.notificationEmails;
+      }
+      if (applicationInputs.notifications.upcomingEvents){
+        newApplication.notifications.upcomingEvents = applicationInputs.notifications.upcomingEvents;
+      }
+      if (applicationInputs.notifications.weeklyReport){
+        newApplication.notifications.weeklyReport = applicationInputs.notifications.weeklyReport;
+      }
+      if (applicationInputs.notifications.agenda){
+        newApplication.notifications.agenda = applicationInputs.notifications.agenda;
+      }
+    }
+    if (applicationInputs.applicationStats) {
+      if (applicationInputs.applicationStats.interviewCount){
+        newApplication.applicationStats.interviewCount = applicationInputs.applicationStats.interviewCount;
+      }
+      if (applicationInputs.applicationStats.offer){
+        newApplication.applicationStats.offer = applicationInputs.applicationStats.offer;
+      }
+      if (applicationInputs.applicationStats.rejection){
+        newApplication.applicationStats.rejection = applicationInputs.applicationStats.rejection;
+      }
+    }
+  }
+  userData.applications.push(newApplication);
+  await new User(userData).save();
+  return res.json(userData);
 };
 
 //Return all stats given username
