@@ -17,7 +17,7 @@ $body-default-text: black;
   width: 100%;
 }
 .application-card-half {
-  width: 45%;
+  width: 49%;
 }
 .height-half {
   height: 185px;
@@ -25,13 +25,17 @@ $body-default-text: black;
 .height-full {
   height: 215px;
 }
+.height-more {
+  height: 285px;
+}
 .float-right {
   float: right;
 }
 .float-left {
   float: left;
 }
-.application-card-full, .application-card-half {
+.application-card-full,
+.application-card-half {
   position: relative;
   display: inline-block;
 
@@ -44,7 +48,7 @@ $body-default-text: black;
     border-radius: 6px 6px 0px 0px;
     padding: $padding * 2 !important;
   }
-  
+
   .header_text {
     h6 {
       @include text-styling(18px);
@@ -52,7 +56,7 @@ $body-default-text: black;
       font-weight: bold;
     }
   }
-  
+
   .description_container {
     width: 100%;
     height: calc(100% - 35px);
@@ -63,16 +67,15 @@ $body-default-text: black;
     border-radius: 12px;
     padding: $padding * 5 !important;
     overflow: auto;
-    
+
     &::-webkit-scrollbar-track {
       margin-top: 1rem;
       margin-bottom: 1rem;
     }
   }
-  
+
   .descript_text {
     @include text-styling(14px);
     color: rgb(0, 0, 0) !important;
   }
 }
-
