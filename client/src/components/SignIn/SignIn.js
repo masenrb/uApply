@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Nav } from "react-bootstrap";
 import { Modal, Button, Header } from "semantic-ui-react";
+import SignUp from './SignUp';
 
 import "./SignIn.scss";
 
@@ -53,7 +54,7 @@ function SignIn(props) {
                 marginBottom: "15px",
               }}
             >
-              New to uApply? <a href="/SignUp">Sign Up</a>.
+              New to uApply? <SignUp trigger={<a href="#">Sign Up</a>}/>.
             </Header.Subheader>
             <Button onClick={() => setOpen(false)} primary type="submit">
               Submit
