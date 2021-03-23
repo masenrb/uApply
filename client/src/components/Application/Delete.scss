@@ -1,0 +1,9 @@
+@use '../../_globals.scss';
+
+.ui.modal {
+  width: 400px;
+  height: 200px;
+  background-color: globals.$dark-gray;
+  margin: 0;
+  float: left;
+}
