@@ -1,0 +1,51 @@
+@use '../../_globals.scss';
+
+.todo-list {
+    .ui.segments {
+        width: 288px;
+        box-sizing: border-box;
+        border-radius: 12px 12px 12px 12px;
+        box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .6);
+        border: solid 1px globals.$light-gray;
+    
+        &>.ui.segment.todo-header {
+            height: 45px;
+            width: 100.1%;
+            background-color: globals.$dark-teal;
+            &>* {
+                color: globals.$white;
+            }
+            border-radius: 11px 11px 0px 0px;
+            text-align: left;
+        }
+        &>.todo-list{
+            height: 300px;
+            width: 100.1%;
+
+            border: {
+                top: 0rem;
+                bottom: 0rem;
+                left: 0rem;
+                right: 1rem;
+                style: solid;
+                color: transparent;
+                radius: 0px 0px 12px 12px !important;
+            }
+            padding: {
+                top: 1rem;
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+            }
+                overflow: auto;
+            // box-shadow: none;
+            // border: none;
+    
+            &::-webkit-scrollbar-track {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+        }
+    }
+}

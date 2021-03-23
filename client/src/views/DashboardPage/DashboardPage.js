@@ -4,6 +4,8 @@ import DashboardCard from "../../components/Dashboard/DashboardCard";
 import Stats from "../../components/Stats/Stats";
 import "./DashboardPage.scss";
 import UserContext from "../../utils/UserContext";
+import Header from "../../components/Header/Header";
+import UpcomingEvents from "../../components/Calender/UpcomingEvents.js";
 
 export default class DashboardPage extends Component {
   static contextType = UserContext;
@@ -50,7 +52,6 @@ export default class DashboardPage extends Component {
         }
       }
     }
-
     return (
       <div className="dashboard">
         {!isLoading && (
@@ -74,6 +75,7 @@ export default class DashboardPage extends Component {
                 <Header as="h2">Awaiting Response</Header>
                 <Card.Group>{applicationAwaitingResponse}</Card.Group>
               </Grid.Column>
+              <UpcomingEvents />
               <Stats stats={stats}></Stats>
             </Grid.Row>
           </Grid>

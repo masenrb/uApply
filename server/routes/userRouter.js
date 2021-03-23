@@ -14,6 +14,11 @@ userRouter.get("/getuser", userController.getUser);
 //Creates user (not yet implemented)
 userRouter.post("/post", userController.createUser);
 
+userRouter.put(
+  "/update/ApplicationStatus",
+  userController.updateApplicationStatus
+);
+
 //Returns all applications
 userRouter.get("/getApplication", userController.getAllApplications);
 
