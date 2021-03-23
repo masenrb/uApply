@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/">
             <Redirect to="/Landingpage" />
           </Route>
-          <Route exact path="/Application" component={ApplicationPage} />
+          <Route exact path="/Application/:applicationId" component={ApplicationPage} />
           <Route component={NotFound} />
         </Switch>
       </UserProvider>
