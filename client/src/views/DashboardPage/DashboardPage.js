@@ -88,8 +88,8 @@ export default class DashboardPage extends Component {
                   <Button
                     style={{
                       marginBottom: "5%",
+                      marginLeft: "35%",
                     }}
-                    fluid
                   >
                     Add Application
                   </Button>
