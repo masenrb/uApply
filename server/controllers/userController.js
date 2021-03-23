@@ -168,6 +168,7 @@ exports.updateApplicationStatus = async (req, res) => {
 
 exports.createApplication = async (req, res) => {
   let applicationInputs = req.query;
+  let userFound = false;
   userData = await User.findById(applicationInputs.userID)
     .then((user) => {
       if (!user) {
@@ -175,6 +176,7 @@ exports.createApplication = async (req, res) => {
           message: "User not found",
         });
       }
+      userFound = true;
       return user;
     })
     .catch(() => {
@@ -321,9 +323,12 @@ exports.createApplication = async (req, res) => {
       }
     }
   }
-  userData.applications.push(newApplication);
-  await new User(userData).save();
-  return res.json(userData);
+  if (userFound) {
+    userData.applications.push(newApplication);
+    await new User(userData).save();
+    return res.json(userData);
+  }
+  return;
 };
 
 exports.deleteApplication = async (req, res) => {
