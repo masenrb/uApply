@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Form, Nav } from "react-bootstrap";
 import { Modal, Button, Header } from "semantic-ui-react";
-import SignUp from './SignUp';
+// import SignUp from ".Sig/SignUp";
 import axios from "axios";
 import UserContext from "../../utils/UserContext";
 
@@ -42,10 +42,11 @@ class SignIn extends Component {
       })
       .then(() => {
         this.setState({ isOpen: false });
-      }).then(() => {
+      })
+      .then(() => {
         console.log(localStorage);
         console.log(this.context);
-        this.props.history.push('/Dashboard');  
+        this.props.history.push("/Dashboard");
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +61,7 @@ class SignIn extends Component {
       isOpen: false,
     });
   }
-    
+
   render() {
     var { isOpen } = this.state;
     return (
@@ -103,12 +104,12 @@ class SignIn extends Component {
                 />
               </Form.Group>
               <Header.Subheader
-              style={{
-                marginBottom: "15px",
-              }}
-            >
-              New to uApply? <SignUp trigger={<a href="#">Sign Up</a>}/>.
-            </Header.Subheader>
+                style={{
+                  marginBottom: "15px",
+                }}
+              >
+                {/* New to uApply? <SignUp trigger={<a href="#">Sign Up</a>}/>. */}
+              </Header.Subheader>
               <Button onClick={this.handleSignIn} primary type="submit">
                 Submit
               </Button>
