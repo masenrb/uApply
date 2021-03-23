@@ -2,36 +2,42 @@ import React, { Component } from "react";
 import { Form, Nav } from "react-bootstrap";
 import { Modal, Button, Header } from "semantic-ui-react";
 import axios from "axios";
+import UserContext from "../../utils/UserContext";
 
 import "./SignIn.scss";
 
 export default class SignIn extends Component {
+  static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
-      signedIn: false,
+      username: "",
+      password: "",
       isOpen: false,
-      user: {},
     };
   }
 
   handleSignIn = (e) => {
+    const { user, setUser } = this.context;
+    const { username, password } = this.state;
+    console.log(username);
     e.preventDefault();
-    console.log("test");
     axios
       .get("/api/users/login", {
         params: {
-          username: "masenb",
-          password: "1234",
+          username: username,
+          password: password,
         },
       })
       .then((res) => {
         console.log("response");
-        console.log(res.data[0]);
         this.state = {
           signedIn: true,
           user: res.data[0],
         };
+        setUser({ data: res.data[0], isLoggedIn: true });
+        localStorage.setItem("data", res.data[0]);
+        localStorage.setItem("isLoggedIn", true);
       })
       .catch((error) => {
         console.log(error);
@@ -41,14 +47,18 @@ export default class SignIn extends Component {
   };
 
   async componentDidMount() {
+    const user = this.context;
+    console.log(user);
     this.setState({
+      username: "",
+      password: "",
       isOpen: false,
     });
   }
 
   render() {
+    const { user } = this.context;
     var { isOpen } = this.state;
-    console.log("open:" + isOpen);
     return (
       <Modal
         onClose={() => this.setState({ isOpen: false })}
@@ -62,7 +72,6 @@ export default class SignIn extends Component {
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          // width: "20%",
           height: "320px",
         }}
       >
@@ -72,14 +81,22 @@ export default class SignIn extends Component {
               <Header>Sign In.</Header>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="username" placeholder="Enter username" />
+                <Form.Control
+                  onChange={(e) => this.setState({ username: e.target.value })}
+                  type="username"
+                  placeholder="Enter username"
+                />
                 <Form.Text className="text-muted">
                   We'll never share your username with anyone else.
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control
+                  onChange={(e) => this.setState({ password: e.target.value })}
+                  type="password"
+                  placeholder="Password"
+                />
               </Form.Group>
               <Header.Subheader
                 style={{
