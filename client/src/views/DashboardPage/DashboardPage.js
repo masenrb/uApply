@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Header, Card, Grid } from "semantic-ui-react";
+import { Header, Card, Grid, Button } from "semantic-ui-react";
 import DashboardCard from "../../components/Dashboard/DashboardCard";
+import { Link } from "react-router-dom";
 import Stats from "../../components/Stats/Stats";
 import "./DashboardPage.scss";
 import UserContext from "../../utils/UserContext";
@@ -83,6 +84,16 @@ export default class DashboardPage extends Component {
               </Grid.Column>
 
               <Grid.Column width={5}>
+                <Link to="/CreateApplication">
+                  <Button
+                    style={{
+                      marginBottom: "5%",
+                    }}
+                    fluid
+                  >
+                    Add Application
+                  </Button>
+                </Link>
                 <UpcomingEvents events={events} />
                 <Stats stats={stats}></Stats>
               </Grid.Column>
