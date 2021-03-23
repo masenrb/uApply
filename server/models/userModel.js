@@ -14,11 +14,11 @@ const userSchema = new mongoose.Schema(
       },
     applications: [
       {
-        companyName: { type: String, required: true },
-        jobTitle: { type: String, required: true },
-        location: { type: String, required: true },
-        description: { type: String, required: true },
-        salary: { type: Number, required: true },
+        companyName: { type: String, required: false },
+        jobTitle: { type: String, required: false },
+        location: { type: String, required: false },
+        description: { type: String, required: false },
+        salary: { type: Number, required: false },
         benefits: [
           {
             type: String,
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
             required: false,
           },
         ],
-        status: { type: String, required: true },
+        status: { type: String, required: false },
         contacts: [
           {
             name: { type: String, required: false },
@@ -56,28 +56,24 @@ const userSchema = new mongoose.Schema(
         ],
         events: [
           {
-            eventTitle: { type: String, required: true },
-            eventDate: { type: Date, required: true },
+            eventTitle: { type: String, required: false },
+            eventDate: { type: Date, required: false },
             notes: { type: String, required: false },
-            phase: { type: String, required: true },
+            phase: { type: String, required: false },
           },
         ],
-        notifications: [
-          {
-            feedbackEmails: { type: Boolean, required: true },
-            notificationEmails: { type: Boolean, required: true },
-            upcomingEvents: { type: Boolean, required: true },
-            weeklyReport: { type: Boolean, required: true },
-            agenda: { type: Boolean, required: true },
-          },
-        ],
-        applicationStats: [
-          {
-            interviewCount: { type: Number, required: true },
-            offer: { type: Boolean, required: true },
-            rejection: { type: Boolean, required: true },
-          },
-        ],
+        notifications: {
+            feedbackEmails: { type: Boolean, required: false },
+            notificationEmails: { type: Boolean, required: false },
+            upcomingEvents: { type: Boolean, required: false },
+            weeklyReport: { type: Boolean, required: false },
+            agenda: { type: Boolean, required: false },
+        },
+        applicationStats: {
+            interviewCount: { type: Number, required: false },
+            offer: { type: Boolean, required: false },
+            rejection: { type: Boolean, required: false },
+        },
       },
     ],
   },

@@ -14,6 +14,10 @@ userRouter.get("/getuser", userController.getUser);
 //Creates user (not yet implemented)
 userRouter.post("/post", userController.createUser);
 
+//Creates new application
+userRouter.post("/createApplication", userController.createApplication);
+
+//Updates application status given ID, company name and new status
 userRouter.put(
   "/update/ApplicationStatus",
   userController.updateApplicationStatus
