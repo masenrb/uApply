@@ -18,7 +18,7 @@ export default class SignIn extends Component {
   }
 
   handleSignIn = (e) => {
-    const { user, setUser } = this.context;
+    const { setUser } = this.context;
     const { username, password } = this.state;
     console.log(username);
     e.preventDefault();
@@ -30,7 +30,6 @@ export default class SignIn extends Component {
         },
       })
       .then((res) => {
-        console.log("response");
         this.state = {
           signedIn: true,
           user: res.data[0],
@@ -48,7 +47,6 @@ export default class SignIn extends Component {
 
   async componentDidMount() {
     const user = this.context;
-    console.log(user);
     this.setState({
       username: "",
       password: "",
@@ -57,7 +55,6 @@ export default class SignIn extends Component {
   }
 
   render() {
-    const { user } = this.context;
     var { isOpen } = this.state;
     return (
       <Modal

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, Button } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 import { Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import SignIn from "../SignIn/SignIn";
@@ -28,9 +28,7 @@ export default class Header extends Component {
   }
 
   signOut() {
-    console.log("test");
     const { setUser } = this.context;
-    console.log(this.context);
     setUser({ data: {}, isLoggedIn: false });
     localStorage.setItem("data", {});
     localStorage.setItem("isLoggedIn", false);
@@ -39,9 +37,7 @@ export default class Header extends Component {
   }
 
   render() {
-    console.log(this.context);
     const { isLoggedIn } = this.context.user;
-    console.log("isLoggedIn: " + isLoggedIn);
 
     return (
       <div>
