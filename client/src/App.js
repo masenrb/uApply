@@ -11,7 +11,7 @@ import { UserProvider } from "./utils/UserContext";
 function App() {
   const location = useLocation();
   const user = {
-    data: localStorage.getItem("data"),
+    data: JSON.parse(localStorage.getItem("data")),
     isLoggedIn: localStorage.getItem("isLoggedIn"),
   };
 

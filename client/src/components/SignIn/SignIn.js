@@ -36,7 +36,7 @@ export default class SignIn extends Component {
           user: res.data[0],
         };
         setUser({ data: res.data[0], isLoggedIn: true });
-        localStorage.setItem("data", res.data[0]);
+        localStorage.setItem("data", JSON.stringify(res.data[0]));
         localStorage.setItem("isLoggedIn", true);
       })
       .catch((error) => {

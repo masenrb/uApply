@@ -21,7 +21,7 @@ export default class Header extends Component {
     // const isLoggedIn = user.isLoggedIn;
     // this.setState({ isLoggedIn: isLoggedIn });
     setUser({
-      data: localStorage.getItem("data"),
+      data: JSON.parse(localStorage.getItem("data")),
       isLoggedIn: localStorage.getItem("isLoggedIn"),
     });
     this.setState({ isLoggedIn: localStorage.getItem("isLoggedIn") });
