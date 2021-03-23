@@ -99,7 +99,7 @@ const ApplicationPage = (props) => {
                 />
             </div>
             <div className='todo-wrapper'>
-              <ToDo />
+              <ToDo toDo={application.toDo}/>
             </div>
           </div>
         </div>
