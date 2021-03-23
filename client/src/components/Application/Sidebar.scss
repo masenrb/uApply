@@ -6,4 +6,18 @@
     background-color: globals.$dark-gray;
     margin: 0;
     float: left;
+
+    .trashcan {
+        margin-top: 80vh !important;
+        margin-bottom: 3rem !important;
+        margin-left: 1.6rem !important;
+        margin-right: 1rem !important;
+        background: none !important;
+    }
+    .ui.button {
+        background: none;
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
 }
