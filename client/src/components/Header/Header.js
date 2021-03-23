@@ -5,37 +5,39 @@ import Navbar from "react-bootstrap/Navbar";
 import SignIn from "../SignIn/SignIn";
 import logo from "../../assets/uApply.png";
 import "./Header.scss";
+import UserContext from "../../utils/UserContext";
 
 export default class Header extends Component {
+  static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
-      location: "",
-      isLandingPage: false,
+      isLoggedIn: false,
     };
   }
 
   componentDidMount() {
-    this.setState({
-      location: this.props.location,
-      isLandingPage: this.props.location === "/Landingpage",
+    const { setUser } = this.context;
+    // const isLoggedIn = user.isLoggedIn;
+    // this.setState({ isLoggedIn: isLoggedIn });
+    setUser({
+      data: JSON.parse(localStorage.getItem("data")),
+      isLoggedIn: localStorage.getItem("isLoggedIn"),
     });
+    this.setState({ isLoggedIn: localStorage.getItem("isLoggedIn") });
+  }
+
+  signOut() {
+    const { setUser } = this.context;
+    setUser({ data: {}, isLoggedIn: false });
+    localStorage.setItem("data", {});
+    localStorage.setItem("isLoggedIn", false);
+    this.setState({ isLoggedIn: false });
+    console.log(this.state);
   }
 
   render() {
-    // const { activeItem } = this.state;
-    var { isLandingPage } = this.state;
-    // if (location !== "/Landingpage") {
-    //   this.setState({
-    //     location: location,
-    //     isLandingPage: false,
-    //   });
-    // } else {
-    //   this.setState({
-    //     location: location,
-    //     isLandingPage: true,
-    //   });
-    // }
+    const { isLoggedIn } = this.context.user;
 
     return (
       <div>
@@ -47,19 +49,17 @@ export default class Header extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/Landingpage">Home</Nav.Link>
-              {!isLandingPage && (
-                <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
-              )}
+              {isLoggedIn && <Nav.Link href="/Dashboard">Dashboard</Nav.Link>}
             </Nav>
           </Navbar.Collapse>
-          {isLandingPage && (
+          {!isLoggedIn && (
             <Nav.Item>
               <SignIn />
             </Nav.Item>
           )}
-          {!isLandingPage && (
+          {isLoggedIn && (
             <Nav.Item>
-              <Nav.Link>Sign Out</Nav.Link>
+              <Nav.Link onClick={this.signOut.bind(this)}>Sign Out</Nav.Link>
             </Nav.Item>
           )}
         </Navbar>

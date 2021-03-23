@@ -1,0 +1,64 @@
+@use '../../_globals.scss';
+
+$module-height: 535px;
+.stats {
+  .ui.card {
+    width: 400px;
+    text-align: left;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 12px 12px 12px 12px;
+    box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, 0.5);
+    border: solid 1px globals.$light-gray;
+    margin-right: auto;
+    margin-left: auto;
+
+    & > .content {
+      padding: 2rem;
+
+      .extra {
+        &>.header {
+          margin-left: 4.5rem;
+        }
+      }
+
+      & > span {
+        vertical-align: middle;
+        & > .button-more {
+          float: right;
+          background-color: transparent;
+          border: solid 2px globals.$dark-teal;
+          border-radius: 12px;
+          width: 2.5em;
+          height: 2.5rem;
+          padding: 0.5rem;
+          &:hover {
+            background-color: lighten(globals.$light-gray, 45%);
+          }
+          &:active {
+            background-color: lighten(globals.$light-gray, 25%);
+          }
+          & > i {
+            color: globals.$dark-teal;
+            transform: scale(1.25);
+          }
+        }
+      }
+      & > .header {
+        font-family: globals.$body-font;
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 16px;
+        font-family: globals.$body-font;
+        font-weight: normal;
+      }
+      h1 {
+        font-weight: normal;
+      }
+      .header > div {
+        font-family: globals.$accent-font;
+      }
+    }
+  }
+}

@@ -7,24 +7,33 @@ import Header from "./components/Header/Header";
 import NotFound from "./views/NotFound";
 import "semantic-ui-css/semantic.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { UserProvider } from "./utils/UserContext";
 
-const App = () => {
+function App() {
   const location = useLocation();
-  // console.log(location.pathname);
+  const user = {
+    data: JSON.parse(localStorage.getItem("data")),
+    isLoggedIn: localStorage.getItem("isLoggedIn"),
+  };
+
+  console.log("App");
+  console.log(user);
   return (
-    <div className='app-container'>
-      <Header location={location.pathname} />
-      <Switch>
-        <Route exact path="/Dashboard" component={DashboardPage} />
-        <Route exact path="/Landingpage" component={LandingPage} />
-        <Route exact path="/">
-          <Redirect to="/Landingpage" />
-        </Route> 
-        <Route exact path="/Application" component={ApplicationPage} />
-        <Route component={NotFound} />
-      </Switch>
+    <div>
+      <UserProvider value={user}>
+        <Header location={location.pathname} />
+        <Switch>
+          <Route exact path="/Dashboard" component={DashboardPage} />
+          <Route exact path="/Landingpage" component={LandingPage} />
+          <Route exact path="/">
+            <Redirect to="/Landingpage" />
+          </Route>
+          <Route exact path="/Application" component={ApplicationPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </UserProvider>
     </div>
   );
-};
+}
 
 export default App;
