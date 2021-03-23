@@ -289,6 +289,7 @@ exports.createApplication = async (req, res) => {
         if (applicationInputs.events[i].phase){
           newEvent.phase = applicationInputs.events[i].phase;
         }
+        newApplication.events.push(newEvent);
       }
     }
     if (applicationInputs.notifications) {
@@ -324,6 +325,35 @@ exports.createApplication = async (req, res) => {
   await new User(userData).save();
   return res.json(userData);
 };
+
+exports.deleteApplication = async (req, res) => {
+  let userID = req.query.userID;
+  userFound = true;
+  userData = await User.findByIdAndUpdate(userID, {$pull: {"applications": {"companyName": req.query.companyName}}}, {safe: true, upsert: true})
+    .then((user) => {
+      if (!user) {
+        return res.status(400).send({
+          message: "User not found",
+        });
+      }
+      return user;
+    })
+    .catch(() => {
+      userFound = false;
+      return res.status(400).send({
+        error: "Incorrect User ID",
+      });
+    });
+    if (userData._id != null) {
+      return res.json({message: "Deleted application",});
+    } else if (userFound) {
+      res.status(400).send({
+        error: "error",
+      });
+    } else {
+      return;
+    }
+}
 
 //Return all stats given username
 exports.getAllStats = async (req, res) => {
