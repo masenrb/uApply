@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Segment, List, Header, Checkbox} from "semantic-ui-react";
-import CustomCheckbox from './CustomCheckbox'
 import "./ToDo.scss";
 
 /*Indeterminate class change doesn't show.
@@ -21,7 +20,7 @@ const ToDo = (props) => {
                             {props.toDo ? 
                                 props.toDo.map((td, index) => {
                                     return(
-                                        <List.Item><CustomCheckbox item={td} index={index}/></List.Item>
+                                        <List.Item><Checkbox label={td}/></List.Item>
                                     )
                                 })
                             : 
