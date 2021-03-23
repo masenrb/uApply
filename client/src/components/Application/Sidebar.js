@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Icon, Button } from "semantic-ui-react";
+import Delete from './Delete'
 import "./Sidebar.scss";
 
 const Sidebar = (props) => {
     
     return (
         <div className='sidebar'>
-            <Button className="trashcan">
+            <Delete trigger={<Button className="trashcan">
                 <Icon name="trash alternate" size="huge" color="grey"/>
-            </Button>
+            </Button>} />
         </div>
     )
 }

@@ -6,4 +6,11 @@
   background-color: globals.$dark-gray;
   margin: 0;
   float: left;
+
+  .actions {
+    text-align: center;
+    &>button {
+      text-align: left;
+    }
+  }
 }

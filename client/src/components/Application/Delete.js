@@ -2,16 +2,25 @@ import React from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 import "./Delete.scss";
 
-function Delete() {
+const Delete = (props) => {
   const [open, setOpen] = React.useState(false)
 
   return (
     <Modal
       closeIcon
       open={open}
-      trigger={<Button >Delete</Button>}
+      trigger={props.trigger}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
+      centered={true}
+      size="mini"
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        height: "190px",
+      }}
     >
       <Header icon='trash' content='Delete Application' />
       <Modal.Content>
@@ -21,11 +30,10 @@ function Delete() {
       </Modal.Content>
       <Modal.Actions>
         <Button color='red' onClick={() => setOpen(false)}>
-          <Icon name='Yes' /> Yes
+          Yes
         </Button>
         <Button color='blue' onClick={() => setOpen(false)}>
-          <Icon name='No' /> No
-        </Button>
+          No</Button>
       </Modal.Actions>
     </Modal>
   )
