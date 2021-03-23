@@ -18,6 +18,7 @@ import "../../components/Application/ToDo.scss";
 import $ from "jquery";
 import UserContext from "../../utils/UserContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // import { updateApplicationStatus } from "../../../../server/controllers/userController";
 
 const CreateApplicationPage = (props) => {
@@ -127,6 +128,7 @@ const CreateApplicationPage = (props) => {
         <Form>
           <div className="application">
             <div className="column-1">
+              <Form.Group widths="equal">
               <Form.Field>
                 <label>Company</label>
                 <input
@@ -142,6 +144,7 @@ const CreateApplicationPage = (props) => {
                   onChange={(e) => setCompany(e.target.value)}
                 />
               </Form.Field>
+              </Form.Group>
 
               <Form.Group widths="equal">
                 <Form.Input
@@ -172,7 +175,7 @@ const CreateApplicationPage = (props) => {
                 <ApplicationCard
                   title="Benefits"
                   width="half"
-                  height="full"
+                  height="less-full"
                   float="left"
                 >
                   <form>
@@ -190,7 +193,7 @@ const CreateApplicationPage = (props) => {
                 <ApplicationCard
                   title="Qualifications"
                   width="half"
-                  height="full"
+                  height="less-full"
                   float="right"
                 >
                   <form>
@@ -209,9 +212,11 @@ const CreateApplicationPage = (props) => {
               </div>
 
               <div class="submit">
-                <Button color="red" onClick={save}>
-                  Save Application
-                </Button>
+                <Link to="/Dashboard">
+                  <Button color="red" onClick={save}>
+                    Save Application
+                  </Button>
+                </Link>
               </div>
             </div>
 
