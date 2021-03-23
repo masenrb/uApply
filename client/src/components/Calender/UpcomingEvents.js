@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Card, Button, Segment, Header } from "semantic-ui-react";
 import "./UpcomingEvents.scss";
 
