@@ -4,7 +4,7 @@ import DashboardCard from "../../components/Dashboard/DashboardCard";
 import Stats from "../../components/Stats/Stats";
 import "./DashboardPage.scss";
 import UserContext from "../../utils/UserContext";
-import Header from "../../components/Header/Header";
+// import Header from "../../components/Header/Header";
 import UpcomingEvents from "../../components/Calender/UpcomingEvents.js";
 
 export default class DashboardPage extends Component {
@@ -26,13 +26,13 @@ export default class DashboardPage extends Component {
     var applicationInterviews = [];
     var applicationAwaitingResponse = [];
     var stats = {};
+    var events = [];
     if (!isLoading) {
       const { user } = this.state;
       console.log(user);
       const applications = user.applications;
       stats = user.stats;
       for (var i = 0; i < applications.length; i++) {
-        // push the component to elements!
         if (applications[i].status === "Offer Received") {
           applicationOffers.push(
             <DashboardCard key={i} value={applications[i]} />
@@ -50,6 +50,9 @@ export default class DashboardPage extends Component {
             <DashboardCard key={i} value={applications[i]} />
           );
         }
+        for (var j = 0; j < applications[i].events.length; j++) {
+          events.push(applications[i].events[j]);
+        }
       }
     }
     return (
@@ -64,9 +67,12 @@ export default class DashboardPage extends Component {
           >
             <Grid.Row>
               <Grid.Column
-                style={{
-                  width: "70%",
-                }}
+                style={
+                  {
+                    // width: "70%",
+                  }
+                }
+                width={10}
               >
                 <Header as="h2">Offer Received</Header>
                 <Card.Group>{applicationOffers}</Card.Group>
@@ -75,8 +81,11 @@ export default class DashboardPage extends Component {
                 <Header as="h2">Awaiting Response</Header>
                 <Card.Group>{applicationAwaitingResponse}</Card.Group>
               </Grid.Column>
-              <UpcomingEvents />
-              <Stats stats={stats}></Stats>
+
+              <Grid.Column width={5}>
+                <UpcomingEvents events={events} />
+                <Stats stats={stats}></Stats>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         )}
