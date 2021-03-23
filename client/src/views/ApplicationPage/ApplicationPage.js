@@ -31,9 +31,12 @@ const ApplicationPage = (props) => {
 
     <div className="application">
       <div className="column-1">
+
         <h1>{company}</h1>
         <h2>{jobTitle}</h2>
         <h4>{location}</h4>
+
+        <div className="space"> </div>
           <div className="salary">
             <div className='dollarsign'>
               $
@@ -41,12 +44,12 @@ const ApplicationPage = (props) => {
             <h2>{salary.toLocaleString()}</h2>
           </div>
           <div className='description'>
-            <ApplicationCard title="Description" width='full' height='half'>
+            <ApplicationCard title="Description" width='full' height='more'>
               <h6>{description}</h6>
             </ApplicationCard>
           </div>
           <div className='benqual'>
-            <ApplicationCard title="Benefits" width='half' height='full' float='left'>
+            <ApplicationCard title="Benefits" width='half' height='more' float='left'>
               <List bulleted>
                   {ben ? 
                       ben.map((b, index) => {
@@ -59,7 +62,7 @@ const ApplicationPage = (props) => {
                   <>No qualificationss</>}
               </List>
             </ApplicationCard>
-            <ApplicationCard title="Qualifications" width='half' height='full' float='right'>
+            <ApplicationCard title="Qualifications" width='half' height='more' float='right'>
               <List>
                 {qual ? 
                     qual.map((q, index) => {
