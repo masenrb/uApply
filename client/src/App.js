@@ -3,6 +3,7 @@ import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import DashboardPage from "./views/DashboardPage/DashboardPage";
 import LandingPage from "./views/LandingPage/LandingPage";
 import ApplicationPage from "./views/ApplicationPage/ApplicationPage";
+import CreateApplicationPage from "./views/CreateApplicationPage/CreateApplicationPage";
 import Header from "./components/Header/Header";
 import NotFound from "./views/NotFound";
 import "semantic-ui-css/semantic.min.css";
@@ -28,6 +29,12 @@ function App() {
           <Route exact path="/">
             <Redirect to="/Landingpage" />
           </Route>
+          <Route exact path="/Application" component={ApplicationPage} />
+          <Route
+            exact
+            path="/CreateApplication"
+            component={CreateApplicationPage}
+          />
           <Route exact path="/Application/:applicationId" component={ApplicationPage} />
           <Route component={NotFound} />
         </Switch>

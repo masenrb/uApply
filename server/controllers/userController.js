@@ -1,6 +1,6 @@
 const { set } = require("mongoose");
 const User = require("../models/userModel.js");
-var ObjectID = require('mongodb').ObjectID;
+var ObjectID = require("mongodb").ObjectID;
 
 //Post request create a user
 //Needs to be fixed
@@ -99,8 +99,7 @@ exports.getApplicationByCompany = async (req, res) => {
   const settings = req.query;
   let user = req.query.username;
   let company = req.query.company;
-  await User.find({ userName: user })
-    .then((user) => {
+  await User.find({ userName: user }).then((user) => {
     if (!user[0])
       return res.status(400).send({
         message: "User not found",
@@ -122,11 +121,11 @@ exports.updateApplicationStatus = async (req, res) => {
   let userID = req.query.userID;
   const newApplicationStatus = req.query.applicationStatus;
   const company = req.query.applicationName;
-  var userData = {}
+  var userData = {};
   userData = await User.findById(userID)
     .then((user) => {
       if (!user) {
-          return res.status(400).send({
+        return res.status(400).send({
           message: "User not found",
         });
       }
@@ -145,7 +144,7 @@ exports.updateApplicationStatus = async (req, res) => {
 
   //Add switch statement for adding to statistics
   for (var i = 0; i < userData.applications.length; i++) {
-    if(userData.applications[i].companyName === company) {
+    if (userData.applications[i].companyName === company) {
       if (!newApplicationStatus) {
         return res.status(400).send({
           error: "No status input",
@@ -167,8 +166,8 @@ exports.updateApplicationStatus = async (req, res) => {
 };
 
 exports.createApplication = async (req, res) => {
-  let applicationInputs = req.query;
-  let userFound = false;
+  let applicationInputs = req.body.params;
+  console.log(applicationInputs);
   userData = await User.findById(applicationInputs.userID)
     .then((user) => {
       if (!user) {
@@ -198,18 +197,18 @@ exports.createApplication = async (req, res) => {
     notes: [],
     events: [],
     notifications: {
-        feedbackEmails: "bool",
-        notificationEmails: "bool",
-        upcomingEvents: "bool",
-        weeklyReport: "bool",
-        agenda: "bool",
+      feedbackEmails: "bool",
+      notificationEmails: "bool",
+      upcomingEvents: "bool",
+      weeklyReport: "bool",
+      agenda: "bool",
     },
     applicationStats: {
-        interviewCount: 0,
-        offer: "bool",
-        rejection: "bool",
+      interviewCount: 0,
+      offer: "bool",
+      rejection: "bool",
     },
-  }
+  };
 
   if (applicationInputs.companyName) {
     newApplication.companyName = applicationInputs.companyName;
@@ -247,25 +246,28 @@ exports.createApplication = async (req, res) => {
   if (applicationInputs.contacts) {
     for (var i = 0; i < applicationInputs.contacts.length; i++) {
       var newContact = {};
-      if (applicationInputs.contacts[i].name){
+      if (applicationInputs.contacts[i].name) {
         newContact.name = applicationInputs.contacts[i].name;
       }
-      if (applicationInputs.contacts[i].email){
+      if (applicationInputs.contacts[i].email) {
         newContact.email = applicationInputs.contacts[i].email;
       }
-      if (applicationInputs.contacts[i].phoneNumber){
+      if (applicationInputs.contacts[i].phoneNumber) {
         newContact.phoneNumber = applicationInputs.contacts[i].phoneNumber;
       }
-      if (applicationInputs.contacts[i].notes){
+      if (applicationInputs.contacts[i].notes) {
         newContact.notes = applicationInputs.contacts[i].notes;
       }
-      if (applicationInputs.contacts[i].lastContactDate){
-        newContact.lastContactDate = new Date(applicationInputs.contacts[i].lastContactDate);
+      if (applicationInputs.contacts[i].lastContactDate) {
+        newContact.lastContactDate = new Date(
+          applicationInputs.contacts[i].lastContactDate
+        );
       } else {
         newContact.lastContactDate = new Date();
       }
-      if (applicationInputs.contacts[i].lastContactNotes){
-        newContact.lastContactNotes = applicationInputs.contacts[i].lastContactNotes;
+      if (applicationInputs.contacts[i].lastContactNotes) {
+        newContact.lastContactNotes =
+          applicationInputs.contacts[i].lastContactNotes;
       }
       newApplication.contacts.push(newContact);
     }
@@ -277,49 +279,57 @@ exports.createApplication = async (req, res) => {
     if (applicationInputs.events) {
       for (var i = 0; i < applicationInputs.events.length; i++) {
         var newEvent = {};
-        if (applicationInputs.events[i].eventTitle){
+        if (applicationInputs.events[i].eventTitle) {
           newEvent.eventTitle = applicationInputs.events[i].eventTitle;
         }
-        if (applicationInputs.events[i].eventDate){
+        if (applicationInputs.events[i].eventDate) {
           newEvent.eventDate = new Date(applicationInputs.events[i].eventDate);
         } else {
           newEvent.eventDate = new Date();
         }
-        if (applicationInputs.events[i].notes){
+        if (applicationInputs.events[i].notes) {
           newEvent.notes = applicationInputs.events[i].notes;
         }
-        if (applicationInputs.events[i].phase){
+        if (applicationInputs.events[i].phase) {
           newEvent.phase = applicationInputs.events[i].phase;
         }
         newApplication.events.push(newEvent);
       }
     }
     if (applicationInputs.notifications) {
-      if (applicationInputs.notifications.feedbackEmails){
-        newApplication.notifications.feedbackEmails = applicationInputs.notifications.feedbackEmails;
+      if (applicationInputs.notifications.feedbackEmails) {
+        newApplication.notifications.feedbackEmails =
+          applicationInputs.notifications.feedbackEmails;
       }
-      if (applicationInputs.notifications.notificationEmails){
-        newApplication.notifications.notificationEmails = applicationInputs.notifications.notificationEmails;
+      if (applicationInputs.notifications.notificationEmails) {
+        newApplication.notifications.notificationEmails =
+          applicationInputs.notifications.notificationEmails;
       }
-      if (applicationInputs.notifications.upcomingEvents){
-        newApplication.notifications.upcomingEvents = applicationInputs.notifications.upcomingEvents;
+      if (applicationInputs.notifications.upcomingEvents) {
+        newApplication.notifications.upcomingEvents =
+          applicationInputs.notifications.upcomingEvents;
       }
-      if (applicationInputs.notifications.weeklyReport){
-        newApplication.notifications.weeklyReport = applicationInputs.notifications.weeklyReport;
+      if (applicationInputs.notifications.weeklyReport) {
+        newApplication.notifications.weeklyReport =
+          applicationInputs.notifications.weeklyReport;
       }
-      if (applicationInputs.notifications.agenda){
-        newApplication.notifications.agenda = applicationInputs.notifications.agenda;
+      if (applicationInputs.notifications.agenda) {
+        newApplication.notifications.agenda =
+          applicationInputs.notifications.agenda;
       }
     }
     if (applicationInputs.applicationStats) {
-      if (applicationInputs.applicationStats.interviewCount){
-        newApplication.applicationStats.interviewCount = applicationInputs.applicationStats.interviewCount;
+      if (applicationInputs.applicationStats.interviewCount) {
+        newApplication.applicationStats.interviewCount =
+          applicationInputs.applicationStats.interviewCount;
       }
-      if (applicationInputs.applicationStats.offer){
-        newApplication.applicationStats.offer = applicationInputs.applicationStats.offer;
+      if (applicationInputs.applicationStats.offer) {
+        newApplication.applicationStats.offer =
+          applicationInputs.applicationStats.offer;
       }
-      if (applicationInputs.applicationStats.rejection){
-        newApplication.applicationStats.rejection = applicationInputs.applicationStats.rejection;
+      if (applicationInputs.applicationStats.rejection) {
+        newApplication.applicationStats.rejection =
+          applicationInputs.applicationStats.rejection;
       }
     }
   }
@@ -334,7 +344,11 @@ exports.createApplication = async (req, res) => {
 exports.deleteApplication = async (req, res) => {
   let userID = req.query.userID;
   userFound = true;
-  userData = await User.findByIdAndUpdate(userID, {$pull: {"applications": {"companyName": req.query.companyName}}}, {safe: true, upsert: true})
+  userData = await User.findByIdAndUpdate(
+    userID,
+    { $pull: { applications: { companyName: req.query.companyName } } },
+    { safe: true, upsert: true }
+  )
     .then((user) => {
       if (!user) {
         return res.status(400).send({
@@ -349,26 +363,26 @@ exports.deleteApplication = async (req, res) => {
         error: "Incorrect User ID",
       });
     });
-    if (userData._id != null) {
-      return res.json({message: "Deleted application",});
-    } else if (userFound) {
-      res.status(400).send({
-        error: "error",
-      });
-    } else {
-      return;
-    }
-}
+  if (userData._id != null) {
+    return res.json({ message: "Deleted application" });
+  } else if (userFound) {
+    res.status(400).send({
+      error: "error",
+    });
+  } else {
+    return;
+  }
+};
 
 //Return all stats given username
 exports.getAllStats = async (req, res) => {
   let user = req.query.username;
-  await User.find({ userName: user}, (err, data) => {
-      if (err)
+  await User.find({ userName: user }, (err, data) => {
+    if (err)
       return res.status(200).send({
-          message: err.message || "An unknown error occurred",
+        message: err.message || "An unknown error occurred",
       });
 
-      return res.json(data[0].stats);
+    return res.json(data[0].stats);
   });
 };

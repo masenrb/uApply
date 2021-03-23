@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Image } from "semantic-ui-react";
 import { Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
@@ -19,14 +19,15 @@ class Header extends Component {
 
   componentDidMount() {
     const { setUser } = this.context;
-    // const isLoggedIn = user.isLoggedIn;
-    // this.setState({ isLoggedIn: isLoggedIn });
-    setUser({
-      data: JSON.parse(localStorage.getItem("data")),
-      isLoggedIn: localStorage.getItem("isLoggedIn"),
-    }, function() {
-      this.setState({ isLoggedIn: this.localStorage.getItem("isLoggedIn")});
-    });
+    setUser(
+      {
+        data: JSON.parse(localStorage.getItem("data")),
+        isLoggedIn: localStorage.getItem("isLoggedIn"),
+      },
+      function () {
+        this.setState({ isLoggedIn: this.localStorage.getItem("isLoggedIn") });
+      }
+    );
   }
 
   signOut() {
@@ -36,7 +37,7 @@ class Header extends Component {
     localStorage.setItem("isLoggedIn", false);
     this.setState({ isLoggedIn: false });
     console.log(this.state);
-    this.props.history.push('/Landingpage');
+    this.props.history.push("/Landingpage");
   }
 
   render() {
@@ -57,7 +58,7 @@ class Header extends Component {
           </Navbar.Collapse>
           {!isLoggedIn && (
             <Nav.Item>
-              <SignIn trigger={<Nav.Link>Sign In</Nav.Link>}/>
+              <SignIn trigger={<Nav.Link>Sign In</Nav.Link>} />
             </Nav.Item>
           )}
           {isLoggedIn && (
