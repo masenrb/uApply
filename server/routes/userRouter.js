@@ -23,6 +23,8 @@ userRouter.put(
   userController.updateApplicationStatus
 );
 
+userRouter.delete("/deleteApplication", userController.deleteApplication);
+
 //Returns all applications
 userRouter.get("/getApplication", userController.getAllApplications);
 
