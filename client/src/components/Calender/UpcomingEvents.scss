@@ -2,100 +2,105 @@
 
 $module-height: 535px;
 .upcoming-events {
-    .ui.segments {
-        display: flex;
-        flex-flow: column;
-        height: $module-height;
-        width: 484px;
-        box-sizing: border-box;
-        border-radius: 12px 12px 12px 12px;
-        box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .5);
-        border: solid 1px globals.$light-gray;
+  .ui.segments {
+    display: flex;
+    flex-flow: column;
+    max-height: $module-height;
+    background-color: white;
+    width: 400px;
+    box-sizing: border-box;
+    border-radius: 12px 12px 12px 12px;
+    box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, 0.5);
+    border: solid 1px globals.$light-gray;
+    margin: auto;
 
-        &>.ui.segment.agenda-header {
-            height: $module-height * .1;
-            flex: {
-                grow: 0;
-                shrink: 0;
-                basis: auto;
-            }
-            background-color: globals.$dark-teal;
-            &>* {
-                color: globals.$white;
-            }
-            border-radius: 11px 11px 0px 0px;
-        }
-        &>.agenda-list{
-            border: {
-                top: 0rem;
-                bottom: 0rem;
-                left: 0rem;
-                right: 1rem;
-                style: solid;
-                color: transparent;
-                radius: 0px 0px 12px 12px !important;
-            }
-            padding: {
-                top: 1rem;
-                bottom: 1rem;
-                left: 1rem;
-                right: 1rem;
-            }
-    
-            flex: {
-                grow: 0;
-                shrink: 1;
-                basis: auto;
-            }
-            overflow: auto;
-            // box-shadow: none;
-            // border: none;
-
-            &::-webkit-scrollbar-track {
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-            }
-        }
+    & > .ui.segment.agenda-header {
+      height: $module-height * 0.1;
+      flex: {
+        grow: 0;
+        shrink: 0;
+        basis: auto;
+      }
+      background-color: globals.$dark-teal;
+      & > * {
+        color: globals.$white;
+      }
+      border-radius: 11px 11px 0px 0px;
+      margin-top: -.5px;
+      text-align: center;
+      width:100.1%;
     }
-    .ui.cards {
-        margin: auto;
-        display: block;
+    & > .agenda-list {
+      border: {
+        top: 0rem;
+        bottom: 0rem;
+        left: 0rem;
+        right: 1rem;
+        style: solid;
+        color: transparent;
+        radius: 0px 0px 12px 12px !important;
+      }
+      padding: {
+        top: 1rem;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+      }
 
-        .ui.card {
-            width: 100%;
-            text-align: left;
-            margin-top: .75rem;
-            margin-bottom: .75rem;
-            border: solid 3px globals.$dark-gray;
-            border-radius: 7px;
-            box-shadow: none;
+      flex: {
+        grow: 0;
+        shrink: 1;
+        basis: auto;
+      }
+      overflow: auto;
+      // box-shadow: none;
+      // border: none;
 
-            &>.content {
-                padding: .75rem;
-
-                &>span {
-                    vertical-align: middle;
-                    &>.button-more {
-                        float: right;
-                        background-color: transparent;
-                        border: solid 2px globals.$dark-teal;
-                        border-radius: 12px;
-                        width: 2.5em;
-                        height: 2.5rem;
-                        padding: .5rem;
-                        &:hover {
-                            background-color: lighten(globals.$light-gray, 45%);
-                        }
-                        &:active {
-                            background-color: lighten(globals.$light-gray, 25%);
-                        }
-                        &>i {
-                            color: globals.$dark-teal;
-                            transform: scale(1.25);
-                        }
-                    }
-                }
-            }
-        }
+      &::-webkit-scrollbar-track {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
     }
+  }
+  .ui.cards {
+    margin: auto;
+    display: block;
+
+    .ui.card {
+      width: 100%;
+      text-align: left;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+      border: solid 3px globals.$dark-gray;
+      border-radius: 7px;
+      box-shadow: none;
+
+      & > .content {
+        padding: 0.75rem;
+
+        & > span {
+          vertical-align: middle;
+          & > .button-more {
+            float: right;
+            background-color: transparent;
+            border: solid 2px globals.$dark-teal;
+            border-radius: 12px;
+            width: 2.5em;
+            height: 2.5rem;
+            padding: 0.5rem;
+            &:hover {
+              background-color: lighten(globals.$light-gray, 45%);
+            }
+            &:active {
+              background-color: lighten(globals.$light-gray, 25%);
+            }
+            & > i {
+              color: globals.$dark-teal;
+              transform: scale(1.25);
+            }
+          }
+        }
+      }
+    }
+  }
 }

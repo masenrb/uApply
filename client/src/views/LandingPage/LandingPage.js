@@ -7,6 +7,24 @@ import SignIn from '../../components/SignIn/SignIn'
 import "./LandingPage.scss";
 
 export default class LandingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      user: 0,
+    };
+    // this.isLoggedIn = this.isLoggedIn.bind(this);
+    console.log(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      isLoggedIn: this.props.user,
+      user: this.props.user,
+    });
+    // console.log(this.props);
+  }
+
   render() {
     return (
       <div className="App-header">
