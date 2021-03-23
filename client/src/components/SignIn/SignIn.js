@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import {withRouter} from "react-router-dom";
 import { Form, Nav } from "react-bootstrap";
 import { Modal, Button, Header } from "semantic-ui-react";
+import SignUp from './SignUp';
 import axios from "axios";
 import UserContext from "../../utils/UserContext";
 
 import "./SignIn.scss";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   static contextType = UserContext;
   constructor(props) {
     super(props);
@@ -38,11 +40,16 @@ export default class SignIn extends Component {
         localStorage.setItem("data", JSON.stringify(res.data[0]));
         localStorage.setItem("isLoggedIn", true);
       })
+      .then(() => {
+        this.setState({ isOpen: false });
+      }).then(() => {
+        console.log(localStorage);
+        console.log(this.context);
+        this.props.history.push('/Dashboard');  
+      })
       .catch((error) => {
         console.log(error);
       });
-
-    this.setState({ isOpen: false });
   };
 
   async componentDidMount() {
@@ -53,7 +60,7 @@ export default class SignIn extends Component {
       isOpen: false,
     });
   }
-
+    
   render() {
     var { isOpen } = this.state;
     return (
@@ -61,7 +68,7 @@ export default class SignIn extends Component {
         onClose={() => this.setState({ isOpen: false })}
         onOpen={() => this.setState({ isOpen: true })}
         open={isOpen}
-        trigger={<Nav.Link>Sign In</Nav.Link>}
+        trigger={this.props.trigger}
         centered={true}
         size="mini"
         style={{
@@ -96,12 +103,12 @@ export default class SignIn extends Component {
                 />
               </Form.Group>
               <Header.Subheader
-                style={{
-                  marginBottom: "15px",
-                }}
-              >
-                New to uApply? <a href="/SignUp">Sign Up</a>.
-              </Header.Subheader>
+              style={{
+                marginBottom: "15px",
+              }}
+            >
+              New to uApply? <SignUp trigger={<a href="#">Sign Up</a>}/>.
+            </Header.Subheader>
               <Button onClick={this.handleSignIn} primary type="submit">
                 Submit
               </Button>
@@ -118,3 +125,4 @@ export default class SignIn extends Component {
     );
   }
 }
+export default withRouter(SignIn);

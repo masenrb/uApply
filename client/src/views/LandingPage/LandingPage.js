@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { Grid, Image, Header } from "semantic-ui-react";
 import logo from "../../assets/uApply.png";
+import SignIn from '../../components/SignIn/SignIn'
 
 import "./LandingPage.scss";
 
@@ -42,13 +43,13 @@ export default class LandingPage extends Component {
                 <Header.Subheader>
                   applications and keep track of your professional connections?
                 </Header.Subheader>
-                <Button
+                <SignIn trigger={<Button
                   style={{
                     marginTop: "5%",
                   }}
                 >
                   Get Started!
-                </Button>
+                </Button>} />
               </Header>
             </Grid.Column>
             <Grid.Column>

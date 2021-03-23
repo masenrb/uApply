@@ -76,7 +76,7 @@ export default class DashboardPage extends Component {
               >
                 <Header as="h2">Offer Received</Header>
                 <Card.Group>{applicationOffers}</Card.Group>
-                <Header as="h2">Interviews</Header>
+                <Header as="h2">Interviews Scheduled</Header>
                 <Card.Group>{applicationInterviews}</Card.Group>
                 <Header as="h2">Awaiting Response</Header>
                 <Card.Group>{applicationAwaitingResponse}</Card.Group>
