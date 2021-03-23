@@ -3,15 +3,14 @@ const mongoose = require("mongoose");
 //Might need to check for commas
 const userSchema = new mongoose.Schema(
   {
-    userName: { type: String, required: true },
-    password: { type: String, required: true },
-    stats:
-      {
-        totalApplications: { type: Number, required: false },
-        interviewCount: { type: Number, required: false },
-        offers: { type: Number, required: false },
-        rejections: { type: Number, required: false },
-      },
+    userName: { type: String, required: false },
+    password: { type: String, required: false },
+    stats: {
+      totalApplications: { type: Number, required: false },
+      interviewCount: { type: Number, required: false },
+      offers: { type: Number, required: false },
+      rejections: { type: Number, required: false },
+    },
     applications: [
       {
         companyName: { type: String, required: false },
@@ -63,16 +62,16 @@ const userSchema = new mongoose.Schema(
           },
         ],
         notifications: {
-            feedbackEmails: { type: Boolean, required: false },
-            notificationEmails: { type: Boolean, required: false },
-            upcomingEvents: { type: Boolean, required: false },
-            weeklyReport: { type: Boolean, required: false },
-            agenda: { type: Boolean, required: false },
+          feedbackEmails: { type: Boolean, required: false },
+          notificationEmails: { type: Boolean, required: false },
+          upcomingEvents: { type: Boolean, required: false },
+          weeklyReport: { type: Boolean, required: false },
+          agenda: { type: Boolean, required: false },
         },
         applicationStats: {
-            interviewCount: { type: Number, required: false },
-            offer: { type: Boolean, required: false },
-            rejection: { type: Boolean, required: false },
+          interviewCount: { type: Number, required: false },
+          offer: { type: Boolean, required: false },
+          rejection: { type: Boolean, required: false },
         },
       },
     ],
