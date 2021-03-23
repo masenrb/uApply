@@ -28,4 +28,7 @@ userRouter.get(
   userController.getApplicationByCompany
 );
 
+//Returns all stats
+userRouter.get("/getStats", userController.getAllStats);
+
 module.exports = userRouter;

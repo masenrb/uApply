@@ -4,7 +4,7 @@ Access my properties with globals.{thing}
 */
 
 /*Fonts*/
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Allerta&display=swap'); 
 
 /*Color Palette*/
 $light-desat-blue: #B2CFE6;
@@ -15,11 +15,21 @@ $light-teal:#61A5C2;
 $primary-red: #E10000;
 $primary-green: #0EB000;
 $primary-blue:#2A59FF;
+$desat-accent: #949494;
 $dark-gray: #343A40;
+$light-gray: #6C757D;
+$very-light-gray: #BFC4CA;
 $white: white;
 
 /*Font Assignments*/
 $body-font: 'Montserrat', sans-serif;
+$accent-font: 'Allerta', sans-serif;
+
+/*Utils*/
+$header-height: 50.25px;
+body {
+    background-color: $light-desat-blue !important;
+}
 
 /*Media Queries
 call like @include media(tablet) {//styles here}
