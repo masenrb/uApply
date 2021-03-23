@@ -5,12 +5,14 @@ $module-height: 535px;
   .ui.segments {
     display: flex;
     flex-flow: column;
-    height: $module-height;
+    max-height: $module-height;
+    background-color: white;
     width: 400px;
     box-sizing: border-box;
     border-radius: 12px 12px 12px 12px;
     box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, 0.5);
     border: solid 1px globals.$light-gray;
+    margin: auto;
 
     & > .ui.segment.agenda-header {
       height: $module-height * 0.1;
@@ -24,6 +26,9 @@ $module-height: 535px;
         color: globals.$white;
       }
       border-radius: 11px 11px 0px 0px;
+      margin-top: -.5px;
+      text-align: center;
+      width:100.1%;
     }
     & > .agenda-list {
       border: {

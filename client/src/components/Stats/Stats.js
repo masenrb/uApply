@@ -18,19 +18,19 @@ const Stats = (props) => {
         }}
       >
         <Card.Content>
-          <Header style={{ marginBottom: "10%" }} as="h1">
+          <Header style={{ marginBottom: "5%" }} as="h1">
             Stats
           </Header>
           <Card.Content extra>
             <Header as="h2">
               <Label
                 style={{
-                  marginTop: "5%",
-                  marginBottom: "5%",
+                  marginTop: "2.5%",
+                  marginBottom: "2.5%",
                   marginRight: "5%",
                 }}
                 circular
-                color="red"
+                color="black"
                 size="massive"
               >
                 {props.stats.totalApplications}
@@ -64,7 +64,7 @@ const Stats = (props) => {
                   marginRight: "5%",
                 }}
                 circular
-                color="green"
+                color="red"
                 size="massive"
               >
                 {props.stats.offers}
@@ -81,7 +81,7 @@ const Stats = (props) => {
                   marginRight: "5%",
                 }}
                 circular
-                color="yellow"
+                color="grey"
                 size="massive"
               >
                 {props.stats.rejections}

@@ -5,6 +5,7 @@ export const phaseDictionary = {
   "Interview 2": "interview",
   "Interview 3": "interview",
   "Offer Received": "offer",
+  "Rejection Received": "rejected"
 };
 
 export const phaseList = [
@@ -22,4 +23,6 @@ export const phaseList = [
   { key: "Interview 2", text: "Interview 2", value: "Interview 2" },
   { key: "Interview 3", text: "Interview 3", value: "Interview 3" },
   { key: "Offer Received", text: "Offer Received", value: "Offer Received" },
+  { key: "Rejection Received", text: "Rejection Received", value: "Rejection Received" },
+
 ];
