@@ -54,7 +54,7 @@ export default class Header extends Component {
           </Navbar.Collapse>
           {isLandingPage && (
             <Nav.Item>
-              <SignIn />
+              <SignIn trigger={<Nav.Link>Sign In</Nav.Link>}/>
             </Nav.Item>
           )}
           {!isLandingPage && (

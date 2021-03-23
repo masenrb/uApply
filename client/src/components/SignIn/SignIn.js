@@ -13,7 +13,7 @@ import "./SignIn.scss";
 //   }
 // }
 
-function SignIn() {
+function SignIn(props) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -21,7 +21,7 @@ function SignIn() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Nav.Link>Sign In</Nav.Link>}
+      trigger={props.trigger}
       centered={true}
       size="mini"
       style={{
