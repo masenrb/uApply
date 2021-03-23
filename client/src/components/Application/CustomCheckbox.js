@@ -5,7 +5,7 @@ const CustomCheckbox = (props) => {
     const [state, setState] = useState('checkbox');
 
     return (
-        <Checkbox label={props.item} id={`td-${props.index}`} onClick={(e) => checkboxClick(`td-${props.index}`, e, state, setState)}/>
+        <Checkbox label={props.item} id={`td-${props.index}`} /*onClick={(e) => checkboxClick(`td-${props.index}`, e, state, setState)}*/ />
     )
 }  
 

@@ -35,6 +35,7 @@ function App() {
             path="/CreateApplication"
             component={CreateApplicationPage}
           />
+          <Route exact path="/Application/:applicationId" component={ApplicationPage} />
           <Route component={NotFound} />
         </Switch>
       </UserProvider>

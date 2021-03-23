@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 import { Dropdown, Card, Button } from "semantic-ui-react";
 import { phaseDictionary, phaseList } from "../../utils/phases.js";
 import "./DashboardCard.scss";
@@ -46,7 +47,9 @@ const DashboardCard = (props) => {
               />
             </div>
             <div className="button-wrapper">
-              <Button>View</Button>
+              <Link to={`/Application/${props.value._id}`}>
+                <Button>View</Button>
+              </Link>
             </div>
           </div>
         </Card.Content>
