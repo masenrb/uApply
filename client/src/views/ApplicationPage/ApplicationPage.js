@@ -95,7 +95,7 @@ const ApplicationPage = (props) => {
                     selected
                     fluid
                     options={phaseList}
-                    onChange={(e) => setAppPhase(e.target.value)}
+                    onChange={(e) => setAppPhase(e.target.textContent)}
                 />
             </div>
             <div className='todo-wrapper'>
