@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Header, Card, Grid, Button } from "semantic-ui-react";
-import DashboardCard from "../../components/Dashboard/DashboardCard";
-import { Link } from "react-router-dom";
-import Stats from "../../components/Stats/Stats";
-import "./DashboardPage.scss";
-import UserContext from "../../utils/UserContext";
+import React, { Component } from 'react';
+import { Header, Card, Grid, Button } from 'semantic-ui-react';
+import DashboardCard from '../../components/Dashboard/DashboardCard';
+import { Link } from 'react-router-dom';
+import Stats from '../../components/Stats/Stats';
+import './DashboardPage.scss';
+import UserContext from '../../utils/UserContext';
 // import Header from "../../components/Header/Header";
-import UpcomingEvents from "../../components/Calender/UpcomingEvents.js";
+import UpcomingEvents from '../../components/Calender/UpcomingEvents.js';
 
 export default class DashboardPage extends Component {
   static contextType = UserContext;
@@ -16,8 +16,7 @@ export default class DashboardPage extends Component {
   }
 
   async componentDidMount() {
-    const user = JSON.parse(localStorage.getItem("data"));
-    console.log(user);
+    const user = JSON.parse(localStorage.getItem('data'));
     this.setState({ user: user, isLoading: false });
   }
 
@@ -29,23 +28,51 @@ export default class DashboardPage extends Component {
     var stats = {};
     var events = [];
     if (!isLoading) {
-      const { user } = this.state;
+      // const { user } = this.state;
+      let user = axios
+        .get('', {
+          params: {
+            username: username,
+            password: password,
+          },
+        })
+        .then((res) => {
+          // this.state = {
+          //   signedIn: true,
+          //   user: res.data[0],
+          // };
+          // setUser({ data: res.data[0], isLoggedIn: true });
+          // localStorage.setItem("data", JSON.stringify(res.data[0]));
+          // localStorage.setItem("isLoggedIn", true);
+          // return user somehow
+        })
+        .then(() => {
+          this.setState({ isOpen: false });
+        })
+        .then(() => {
+          console.log(localStorage);
+          console.log(this.context);
+          this.props.history.push('/Dashboard');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       console.log(user);
       const applications = user.applications;
       stats = user.stats;
       for (var i = 0; i < applications.length; i++) {
-        if (applications[i].status === "Offer Received") {
+        if (applications[i].status === 'Offer Received') {
           applicationOffers.push(
             <DashboardCard key={i} value={applications[i]} />
           );
-        } else if (applications[i].status === "Awaiting Response") {
+        } else if (applications[i].status === 'Awaiting Response') {
           applicationAwaitingResponse.push(
             <DashboardCard key={i} value={applications[i]} />
           );
         } else if (
-          applications[i].status === "Interview 1" ||
-          applications[i].status === "Interview 2" ||
-          applications[i].status === "Interview 3"
+          applications[i].status === 'Interview 1' ||
+          applications[i].status === 'Interview 2' ||
+          applications[i].status === 'Interview 3'
         ) {
           applicationInterviews.push(
             <DashboardCard key={i} value={applications[i]} />
@@ -61,8 +88,8 @@ export default class DashboardPage extends Component {
         {!isLoading && (
           <Grid
             style={{
-              marginTop: "1%",
-              marginLeft: "3%",
+              marginTop: '1%',
+              marginLeft: '3%',
             }}
             columns={2}
           >
@@ -87,7 +114,7 @@ export default class DashboardPage extends Component {
                 <Link to="/CreateApplication">
                   <Button
                     style={{
-                      marginBottom: "5%",
+                      marginBottom: '5%',
                     }}
                     fluid
                   >

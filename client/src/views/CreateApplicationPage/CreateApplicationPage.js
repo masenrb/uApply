@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from 'react';
 import {
   Dropdown,
   List,
@@ -7,18 +7,18 @@ import {
   Form,
   Segment,
   Header,
-} from "semantic-ui-react";
-import "./CreateApplicationPage.scss";
-import ToDo from "../../components/Application/ToDo";
-import Sidebar from "../../components/Application/Sidebar";
-import ApplicationCard from "../../components/Application/ApplicationCard";
-import { phaseDictionary, phaseList } from "../../utils/phases.js";
-import CustomCheckbox from "../../components/Application/CustomCheckbox";
-import "../../components/Application/ToDo.scss";
-import $ from "jquery";
-import UserContext from "../../utils/UserContext";
-import axios from "axios";
-import { Link } from "react-router-dom";
+} from 'semantic-ui-react';
+import './CreateApplicationPage.scss';
+import ToDo from '../../components/Application/ToDo';
+import Sidebar from '../../components/Application/Sidebar';
+import ApplicationCard from '../../components/Application/ApplicationCard';
+import { phaseDictionary, phaseList } from '../../utils/phases.js';
+import CustomCheckbox from '../../components/Application/CustomCheckbox';
+import '../../components/Application/ToDo.scss';
+import $ from 'jquery';
+import UserContext from '../../utils/UserContext';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 // import { updateApplicationStatus } from "../../../../server/controllers/userController";
 
 const CreateApplicationPage = (props) => {
@@ -26,10 +26,11 @@ const CreateApplicationPage = (props) => {
 
   const { user, setUser } = context;
 
-  console.log(user.data);
-  console.log(context);
+  const [appPhase, setAppPhase] = useState('Filling Application');
 
-  const [appPhase, setAppPhase] = useState("Filling Application");
+  useEffect(() => {
+    console.log(appPhase);
+  }, [appPhase]);
 
   /*TEMP*/
   const [company, setCompany] = useState();
@@ -42,17 +43,17 @@ const CreateApplicationPage = (props) => {
   const [todo, setTodo] = useState();
 
   const save = () => {
-    console.log(user.data._id);
     axios
-      .post("/api/users/createApplication", {
+      .post('/api/users/createApplication', {
         params: {
-          userName: "nathan",
-          password: "4444",
+          userName: 'nathan',
+          password: '4444',
           userID: user.data._id,
           companyName: company,
           jobTitle: jobTitle,
           location: location,
           description: description,
+          status: appPhase,
           salary: salary,
           benefits: benefits,
           qualifications: qualifications,
@@ -67,9 +68,11 @@ const CreateApplicationPage = (props) => {
           description: description,
           salary: salary,
           benefits: benefits,
+          status: appPhase,
           qualifications: qualifications,
           todo: todo,
         });
+        localStorage.setItem('data', JSON.stringify(user.data));
       })
       .then(() => {
         setUser({ data: user, isLoggedIn: true });
@@ -79,41 +82,41 @@ const CreateApplicationPage = (props) => {
       });
   };
 
-  let qual = ["good at write", "good at code", "so tired"];
+  let qual = ['good at write', 'good at code', 'so tired'];
 
   //works but doesn't after refresh
-  $(".todolist").focus(function () {
-    if (document.getElementById("todolist").value === "") {
-      document.getElementById("todolist").value += "☐ ";
+  $('.todolist').focus(function () {
+    if (document.getElementById('todolist').value === '') {
+      document.getElementById('todolist').value += '☐ ';
     }
   });
-  $(".todolist").keyup(function (event) {
+  $('.todolist').keyup(function (event) {
     var keycode = event.keyCode ? event.keyCode : event.which;
-    if (keycode == "13") {
-      document.getElementById("todolist").value += "☐ ";
+    if (keycode == '13') {
+      document.getElementById('todolist').value += '☐ ';
     }
-    var txtval = document.getElementById("todolist").value;
-    if (txtval.substr(txtval.length - 1) == "\n") {
-      document.getElementById("todolist").value = txtval.substring(
+    var txtval = document.getElementById('todolist').value;
+    if (txtval.substr(txtval.length - 1) == '\n') {
+      document.getElementById('todolist').value = txtval.substring(
         0,
         txtval.length - 1
       );
     }
   });
 
-  $(".bulletlist").focus(function () {
-    if (document.getElementById("bulletlist").value === "") {
-      document.getElementById("bulletlist").value += "• ";
+  $('.bulletlist').focus(function () {
+    if (document.getElementById('bulletlist').value === '') {
+      document.getElementById('bulletlist').value += '• ';
     }
   });
-  $(".bulletlist").keyup(function (event) {
+  $('.bulletlist').keyup(function (event) {
     var keycode = event.keyCode ? event.keyCode : event.which;
-    if (keycode == "13") {
-      document.getElementById("bulletlist").value += "• ";
+    if (keycode == '13') {
+      document.getElementById('bulletlist').value += '• ';
     }
-    var txtval = document.getElementById("bulletlist").value;
-    if (txtval.substr(txtval.length - 1) == "\n") {
-      document.getElementById("bulletlist").value = txtval.substring(
+    var txtval = document.getElementById('bulletlist').value;
+    if (txtval.substr(txtval.length - 1) == '\n') {
+      document.getElementById('bulletlist').value = txtval.substring(
         0,
         txtval.length - 1
       );
@@ -140,7 +143,7 @@ const CreateApplicationPage = (props) => {
                 <label>Job Title</label>
                 <input
                   placeholder="Job Title"
-                  onChange={(e) => setCompany(e.target.value)}
+                  onChange={(e) => setJobTitle(e.target.value)}
                 />
               </Form.Field>
 
@@ -183,7 +186,7 @@ const CreateApplicationPage = (props) => {
                       // name="bulletlist"
                       rows="7"
                       placeholder="Healthcare, Vacation . ."
-                      onChange={(e) => setBenefits(e.target.value.split(", "))}
+                      onChange={(e) => setBenefits(e.target.value.split(', '))}
                     ></textarea>
                   </form>
                 </ApplicationCard>
@@ -202,7 +205,7 @@ const CreateApplicationPage = (props) => {
                       rows="7"
                       placeholder="Language, Framework, Software . ."
                       onChange={(e) =>
-                        setQualifications(e.target.value.split(", "))
+                        setQualifications(e.target.value.split(', '))
                       }
                     ></textarea>
                   </form>
@@ -225,7 +228,7 @@ const CreateApplicationPage = (props) => {
                   selected
                   fluid
                   options={phaseList}
-                  onChange={(e) => setAppPhase(e.target.value)}
+                  onChange={(e) => setAppPhase(e.target.textContent)}
                 />
               </div>
               <div className="todo-wrapper">
@@ -242,7 +245,7 @@ const CreateApplicationPage = (props) => {
                           // name="todolist"
                           rows="7"
                           placeholder="Task here . ."
-                          onChange={(e) => setTodo(e.target.value.split("\n"))}
+                          onChange={(e) => setTodo(e.target.value.split('\n'))}
                         ></textarea>
                       </form>
                     </Segment>
