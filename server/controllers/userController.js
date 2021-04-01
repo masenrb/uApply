@@ -166,8 +166,8 @@ exports.updateApplicationStatus = async (req, res) => {
 };
 
 exports.createApplication = async (req, res) => {
-  let applicationInputs = req.body.params;
-  console.log(applicationInputs);
+  let applicationInputs = req.query;
+  let userFound = false;
   userData = await User.findById(applicationInputs.userID)
     .then((user) => {
       if (!user) {
@@ -335,6 +335,7 @@ exports.createApplication = async (req, res) => {
   }
   if (userFound) {
     userData.applications.push(newApplication);
+    userData.stats.totalApplications += 1;
     await new User(userData).save();
     return res.json(userData);
   }
@@ -346,7 +347,10 @@ exports.deleteApplication = async (req, res) => {
   userFound = true;
   userData = await User.findByIdAndUpdate(
     userID,
-    { $pull: { applications: { companyName: req.query.companyName } } },
+    { 
+      $inc: { "stats.totalApplications": -1 },
+      $pull: { applications: { companyName: req.query.companyName }} 
+    },
     { safe: true, upsert: true }
   )
     .then((user) => {
