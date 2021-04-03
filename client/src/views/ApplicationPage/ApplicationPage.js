@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import { Dropdown, List } from "semantic-ui-react";
+import { Dropdown, List, } from "semantic-ui-react";
 import "./ApplicationPage.scss";
 import ToDo from "../../components/Application/ToDo"
-import Sidebar from "../../components/Application/Sidebar"
+import SideBar from "../../components/Application/Sidebar"
 import ApplicationCard from '../../components/Application/ApplicationCard';
 import { phaseDictionary, phaseList } from "../../utils/phases.js";
 import CustomCheckbox from '../../components/Application/CustomCheckbox';
@@ -42,7 +42,7 @@ const ApplicationPage = (props) => {
     <div className="application-container">
       {application && appPhase && (
         <>
-        <Sidebar />
+        <SideBar />
 
         <div className="application">
           <div className="column-1">
