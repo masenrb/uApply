@@ -122,7 +122,7 @@ const CreateApplicationPage = (props) => {
 
   return (
     <>
-      <div className="application-container">
+      <div className="create-app">
         <Sidebar />
 
         <Form>

@@ -53,7 +53,7 @@ const ApplicationPage = (props) => {
                 <div className='dollarsign'>
                   $
                 </div>
-                <h2>{application.salary.toLocaleString()}</h2>
+                <h2 style={{float:'right', paddingTop:'.75rem'}}>{application.salary.toLocaleString()}</h2>
               </div>
               <div className='description'>
                 <ApplicationCard title="Description" width='full' height='half'>

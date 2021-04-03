@@ -35,122 +35,124 @@ $padding: 1rem;
 .application-container {
     height: calc(100vh - #{globals.$header-height});
     width: 100vw;
-}
-.application {
-    height: calc(100vh - #{globals.$header-height});
-    float: right;
-    width: calc(100% - 132px);
-    padding: 3rem;
-    h1 {
-        @include header-styling(36px);
-    }
-    h2 {
-        @include header-styling(28px);
 
-    }
-    h4 {
-        @include header-styling(18px);
-        margin-bottom: 0;
-    }
-    .column-1 {
-        width: 70%;
-        float: left;
-        height: 100%;
-
-        .salary {
-            @extend %box-styling;
-            border-top-left-radius: 0px;
-            border-bottom-left-radius: 0px;
-            float: right;
-            width: 250px;
-            height: 60px;
-            margin: 0px;
-
-            .dollarsign {
-                display: inline-block;
-                font-size: 30px;
-                font-family: globals.$body-font;
-                border-right: solid 1px globals.$very-light-gray;
-                width: 20%;
-                height: 100%;
-                text-align: center;
-                padding-top: .5rem;
-            }
-            h2 {
-                display: inline-block;
-                font-weight: normal;
-                font-size: 30px;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-        }
-        .float-right {
-            float: right;
-        }
-        .float-left {
-            float: left;
-        }
-    }
-    .column-2 {
-        width: 30%;
+    .application {
+        height: calc(100vh - #{globals.$header-height});
         float: right;
-        height: 100%;
-        .todo-wrapper {
-            margin-left: 15%;
-            margin-top: 53%;
+        width: calc(100% - 132px);
+        padding: 3rem;
+        h1 {
+            @include header-styling(36px);
         }
-        .dropdown-wrapper {
-            width: 340px;
-            height: $dropdown-height;
-            float: right;
-            margin-top: 20px;
-
-            .ui.dropdown {
+        h2 {
+            @include header-styling(28px);
+    
+        }
+        h4 {
+            @include header-styling(18px);
+            margin-bottom: 0;
+        }
+        .column-1 {
+            width: 70%;
+            float: left;
+            height: 100%;
+    
+            .salary {
                 @extend %box-styling;
-                padding: $padding $padding*1.5;
-                box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .6);
-
-                &>.text {
-                    @include text-styling(20px);
-                    margin-left: 2rem;
-                }
-                &>.dropdown.icon {
-                    transform: rotate(-90deg) scale(2);
-                    margin: {
-                        top: .75rem;
-                        left: 0;
-                        right: 0 !important;
-                        bottom: 0;
-                    }
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                float: right;
+                width: calc(auto + 50px);
+                height: 60px;
+                margin: 0px;
+    
+                .dollarsign {
+                    display: inline-block;
+                    font-size: 30px;
+                    font-family: globals.$body-font;
+                    border-right: solid 1px globals.$very-light-gray;
+                    width: 60px;
+                    height: 100%;
                     text-align: center;
-                    &:before {
-                        font-size: 18px;
-                        content: '\276E';
-                        color: globals.$light-gray;
-                    }
+                    padding-top: .5rem;
                 }
-                .menu {
-                    width: 100%;
-                    &>.item {
+                h2 {
+                    display: inline-block;
+                    font-weight: normal;
+                    font-size: 30px;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+            }
+            .float-right {
+                float: right;
+            }
+            .float-left {
+                float: left;
+            }
+        }
+        .column-2 {
+            width: 30%;
+            float: right;
+            height: 100%;
+            .todo-wrapper {
+                margin-left: 15%;
+                margin-top: 53%;
+            }
+            .dropdown-wrapper {
+                width: 340px;
+                height: $dropdown-height;
+                float: right;
+                margin-top: 20px;
+    
+                .ui.dropdown {
+                    @extend %box-styling;
+                    padding: $padding $padding*1.5;
+                    box-shadow: 4px 7px 4px transparentize(globals.$dark-sat-blue, .6);
+    
+                    &>.text {
                         @include text-styling(20px);
-                        padding: {
-                            left: $padding*3.5 !important;
-                            right: $padding*3.5 !important;
-                            top: $padding*2 !important;
-                            bottom: $padding*2 !important;
+                        margin-left: 2rem;
+                    }
+                    &>.dropdown.icon {
+                        transform: rotate(-90deg) scale(2);
+                        margin: {
+                            top: .75rem;
+                            left: 0;
+                            right: 0 !important;
+                            bottom: 0;
+                        }
+                        text-align: center;
+                        &:before {
+                            font-size: 18px;
+                            content: '\276E';
+                            color: globals.$light-gray;
+                        }
+                    }
+                    .menu {
+                        width: 100%;
+                        &>.item {
+                            @include text-styling(20px);
+                            padding: {
+                                left: $padding*3.5 !important;
+                                right: $padding*3.5 !important;
+                                top: $padding*2 !important;
+                                bottom: $padding*2 !important;
+                            }
                         }
                     }
                 }
             }
         }
+        .inline {
+            display: inline-block;
+        }
+        .description {
+            margin-top: 3.5rem;
+        }
+        .benqual {
+            margin-top: 1.75rem;
+        }
     }
-    .inline {
-        display: inline-block;
-    }
-    .description {
-        margin-top: 3.5rem;
-    }
-    .benqual {
-        margin-top: 1.75rem;
-    }
+
 }
