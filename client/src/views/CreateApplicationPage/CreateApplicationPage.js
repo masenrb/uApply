@@ -161,7 +161,7 @@ const CreateApplicationPage = (props) => {
                 />
               </Form.Group>
 
-              <div className="description">
+              <div className="description" style={{marginTop:'2.9rem'}}>
                 <ApplicationCard title="Description" width="full" height="half">
                   <Form.TextArea
                     placeholder="Description"
@@ -171,7 +171,7 @@ const CreateApplicationPage = (props) => {
                 </ApplicationCard>
               </div>
 
-              <div className="benqual">
+              <div className="benqual" style={{height:'auto'}}>
                 <ApplicationCard
                   title="Benefits"
                   width="half"
