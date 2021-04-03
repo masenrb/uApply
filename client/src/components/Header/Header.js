@@ -42,7 +42,6 @@ class Header extends Component {
 
   render() {
     const { isLoggedIn } = this.context.user;
-
     return (
       <div>
         <Navbar expand="lg">

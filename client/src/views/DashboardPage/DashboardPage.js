@@ -86,6 +86,7 @@ export default class DashboardPage extends Component {
               <Grid.Column width={5}>
                 <Link to="/CreateApplication">
                   <Button
+                     color="red"
                     style={{
                       marginBottom: "5%",
                       marginLeft: "35%",
