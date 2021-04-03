@@ -93,11 +93,15 @@ $padding: 1rem;
         }
         .column-2 {
             width: 30%;
+            position:relative;
             float: right;
             height: 100%;
             .todo-wrapper {
                 margin-left: 15%;
-                margin-top: 53%;
+                height: 66%;
+                width: 87%;
+                float: right;
+                margin-top: 8.2rem;
             }
             .dropdown-wrapper {
                 width: 340px;
@@ -149,9 +153,11 @@ $padding: 1rem;
         }
         .description {
             margin-top: 3.5rem;
+            height: 30%;
         }
         .benqual {
             margin-top: 1.75rem;
+            height:42%;
         }
     }
 
