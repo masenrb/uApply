@@ -18,7 +18,7 @@ userRouter.post("/post", userController.createUser);
 userRouter.post("/createApplication", userController.createApplication);
 
 //Updates application status given ID, company name and new status
-userRouter.put(
+userRouter.post(
   "/update/ApplicationStatus",
   userController.updateApplicationStatus
 );

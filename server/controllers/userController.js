@@ -138,6 +138,7 @@ exports.updateApplicationStatus = async (req, res) => {
     });
 
   let foundCompany = false;
+  let updateStatus = true;
   if (userData.statusCode === 400) {
     return;
   }
@@ -150,12 +151,76 @@ exports.updateApplicationStatus = async (req, res) => {
           error: "No status input",
         });
       }
+
+      if (newApplicationStatus === 'Filling Application' || newApplicationStatus === "Awaiting Response") {
+        userData.stats.interviewCount -= userData.applications[i].applicationStats.interviewCount;
+        userData.applications[i].applicationStats.interviewCount = 0;
+
+        if (userData.applications[i].applicationStats.offer) {
+          userData.stats.offers -= 1;
+          userData.applications[i].applicationStats.offer = false;
+        }
+        if (userData.applications[i].applicationStats.rejection) {
+          userData.stats.rejections -= 1;
+          userData.applications[i].applicationStats.rejection = false;
+        }
+      } else if (newApplicationStatus === "Interview 1" || newApplicationStatus === "Interview 2" || newApplicationStatus === "Interview 3") {
+        userData.stats.interviewCount -= userData.applications[i].applicationStats.interviewCount;
+        switch(newApplicationStatus) {
+          case "Interview 1":
+            userData.applications[i].applicationStats.interviewCount = 1;
+            userData.stats.interviewCount += 1;
+            break;
+          case "Interview 2":
+            userData.applications[i].applicationStats.interviewCount = 2;
+            userData.stats.interviewCount += 2;
+            break;
+          case "Interview 3":
+            userData.applications[i].applicationStats.interviewCount = 3;
+            userData.stats.interviewCount += 3;
+            break;
+        }
+
+        if (userData.applications[i].applicationStats.offer) {
+          userData.stats.offers -= 1;
+          userData.applications[i].applicationStats.offer = false;
+        }
+        if (userData.applications[i].applicationStats.rejection) {
+          userData.stats.rejections -= 1;
+          userData.applications[i].applicationStats.rejection = false;
+        }
+      } else if (newApplicationStatus === "Offer Received") {
+        if (!userData.applications[i].applicationStats.offer) {
+          userData.stats.offers += 1;
+          userData.applications[i].applicationStats.offer = true;
+        }
+        if (userData.applications[i].applicationStats.rejection) {
+          userData.stats.rejections -= 1;
+          userData.applications[i].applicationStats.rejection = false;
+        }
+      } else if (newApplicationStatus === "Rejection Received") {
+        if (!userData.applications[i].applicationStats.rejection) {
+          userData.stats.rejections += 1;
+          userData.applications[i].applicationStats.rejection = true;
+        }
+        if (userData.applications[i].applicationStats.offer) {
+          userData.stats.offers -= 1;
+          userData.applications[i].applicationStats.offer = false;
+        }
+      } else {
+        updateStatus = false;
+      }
+
       userData.applications[i].status = newApplicationStatus;
       foundCompany = true;
     }
   }
 
-  if (foundCompany) {
+  if (!updateStatus) {
+    return res.status(400).send({
+      message: "Invalid status update",
+    });
+  } else if (foundCompany) {
     await new User(userData).save();
     return res.json(userData);
   } else {
