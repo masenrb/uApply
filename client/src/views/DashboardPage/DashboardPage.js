@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Card, Grid, Button } from 'semantic-ui-react';
+import { Header, Card, Grid, Button, Segment } from 'semantic-ui-react';
 import DashboardCard from '../../components/Dashboard/DashboardCard';
+import DashboardSegment from '../../components/Dashboard/DashboardSegment';
 import { Link } from 'react-router-dom';
 import Stats from '../../components/Stats/Stats';
 import './DashboardPage.scss';
@@ -17,6 +18,8 @@ export default class DashboardPage extends Component {
       applicationOffers: [],
       applicationInterviews: [],
       applicationAwaitingResponse: [],
+      applicationFillingApplication: [],
+      applicationRejectionReceived: [],
       events: [],
     };
   }
@@ -26,6 +29,8 @@ export default class DashboardPage extends Component {
     var applicationOffers = [];
     var applicationInterviews = [];
     var applicationAwaitingResponse = [];
+    var applicationFillingApplication = [];
+    var applicationRejectionReceived = [];
     var stats = {};
     var events = [];
     axios
@@ -55,6 +60,20 @@ export default class DashboardPage extends Component {
             applicationInterviews.push(
               <DashboardCard key={i} value={applications[i]} />
             );
+          } else if (applications[i].status === 'Filling Application') {
+            applicationFillingApplication.push(
+              <DashboardSegment
+                key={i}
+                value={applications[i]}
+              ></DashboardSegment>
+            );
+          } else if (applications[i].status === 'Rejection Received') {
+            applicationRejectionReceived.push(
+              <DashboardSegment
+                key={i}
+                value={applications[i]}
+              ></DashboardSegment>
+            );
           }
           for (var j = 0; j < applications[i].events.length; j++) {
             events.push(applications[i].events[j]);
@@ -67,6 +86,8 @@ export default class DashboardPage extends Component {
           applicationOffers: applicationOffers,
           applicationInterviews: applicationInterviews,
           applicationAwaitingResponse: applicationAwaitingResponse,
+          applicationFillingApplication: applicationFillingApplication,
+          applicationRejectionReceived: applicationRejectionReceived,
           events: events,
           stats: stats,
         });
@@ -108,6 +129,10 @@ export default class DashboardPage extends Component {
                 <Card.Group>
                   {this.state.applicationAwaitingResponse}
                 </Card.Group>
+                <Header as="h2">Filling Application</Header>
+                {this.state.applicationFillingApplication}
+                <Header as="h2">Rejection Received</Header>
+                {this.state.applicationRejectionReceived}
               </Grid.Column>
 
               <Grid.Column width={5}>
@@ -116,7 +141,7 @@ export default class DashboardPage extends Component {
                 </Header>
                 <Link to="/CreateApplication">
                   <Button
-                     color="red"
+                    color="red"
                     style={{
                       marginBottom: '5%',
                       marginLeft: '35%',
