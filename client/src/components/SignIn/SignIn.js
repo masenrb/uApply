@@ -51,7 +51,6 @@ class SignIn extends Component {
   };
 
   async componentDidMount() {
-    const user = this.context;
     this.setState({
       username: '',
       password: '',

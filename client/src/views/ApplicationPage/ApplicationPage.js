@@ -38,7 +38,7 @@ const ApplicationPage = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [props.match.params.applicationId]);
 
   return (
     <>
@@ -75,7 +75,7 @@ const ApplicationPage = (props) => {
                     <List bulleted>
                       {application.benefits.length > 0 ? (
                         application.benefits.map((b, index) => {
-                          return <List.Item>{b}</List.Item>;
+                          return <List.Item key={index}>{b}</List.Item>;
                         })
                       ) : (
                         <>No qualificationss</>
@@ -92,7 +92,7 @@ const ApplicationPage = (props) => {
                       {application.qualifications.length > 0 ? (
                         application.qualifications.map((q, index) => {
                           return (
-                            <List.Item>
+                            <List.Item key={index}>
                               <CustomCheckbox item={q} index={index} />
                             </List.Item>
                           );

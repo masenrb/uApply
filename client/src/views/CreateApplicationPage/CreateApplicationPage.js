@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Dropdown, Button, Form, Segment, Header } from 'semantic-ui-react';
 import './CreateApplicationPage.scss';
 import Sidebar from '../../components/Application/Sidebar';

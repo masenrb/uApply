@@ -9,10 +9,10 @@ import './LandingPage.scss';
 export default class LandingPage extends Component {
   constructor(props) {
     super(props);
-    this.setState({
+    this.state = {
       isLoggedIn: false,
       user: 0,
-    });
+    };
   }
 
   componentDidMount() {
