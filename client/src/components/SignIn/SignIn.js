@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { Form, Nav } from "react-bootstrap";
-import { Modal, Button, Header } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import { Modal, Button, Header } from 'semantic-ui-react';
 // import SignUp from './SignUp';
-import axios from "axios";
-import UserContext from "../../utils/UserContext";
+import axios from 'axios';
+import UserContext from '../../utils/UserContext';
 
-import "./SignIn.scss";
+import './SignIn.scss';
 
 class SignIn extends Component {
   static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
       isOpen: false,
     };
   }
@@ -22,31 +22,28 @@ class SignIn extends Component {
   handleSignIn = (e) => {
     const { setUser } = this.context;
     const { username, password } = this.state;
-    console.log(username);
     e.preventDefault();
     axios
-      .get("/api/users/login", {
+      .get('/api/users/login', {
         params: {
           username: username,
           password: password,
         },
       })
       .then((res) => {
-        this.state = {
+        this.setState({
           signedIn: true,
           user: res.data[0],
-        };
+        });
         setUser({ data: res.data[0], isLoggedIn: true });
-        localStorage.setItem("data", JSON.stringify(res.data[0]));
-        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem('data', JSON.stringify(res.data[0]));
+        localStorage.setItem('isLoggedIn', true);
       })
       .then(() => {
         this.setState({ isOpen: false });
       })
       .then(() => {
-        console.log(localStorage);
-        console.log(this.context);
-        this.props.history.push("/Dashboard");
+        this.props.history.push('/Dashboard');
       })
       .catch((error) => {
         console.log(error);
@@ -56,8 +53,8 @@ class SignIn extends Component {
   async componentDidMount() {
     const user = this.context;
     this.setState({
-      username: "",
-      password: "",
+      username: '',
+      password: '',
       isOpen: false,
     });
   }
@@ -73,11 +70,11 @@ class SignIn extends Component {
         centered={true}
         size="mini"
         style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          height: "320px",
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          height: '320px',
         }}
       >
         <Modal.Content>
@@ -105,7 +102,7 @@ class SignIn extends Component {
               </Form.Group>
               <Header.Subheader
                 style={{
-                  marginBottom: "15px",
+                  marginBottom: '15px',
                 }}
               >
                 {/* New to uApply? <SignUp trigger={<a href="#">Sign Up</a>}/>. */}

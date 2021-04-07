@@ -6,7 +6,6 @@ var ObjectID = require('mongodb').ObjectID;
 //Needs to be fixed
 exports.createUser = async (req, res) => {
   const user = req.body;
-  console.log(req.query);
   if (!user) {
     return res.status(400).send({
       error: 'User not found',
@@ -88,8 +87,6 @@ exports.getAllApplications = async (req, res) => {
       return res.status(400).send({
         message: err.message || 'An unknown error occurred',
       });
-    //Print out to see the retun
-    // console.log(data[0].applications);
     res.json(data[0].applications);
   });
 };
@@ -121,7 +118,6 @@ exports.updateApplicationStatus = async (req, res) => {
   let userID = req.body.params.userID;
   const newApplicationStatus = req.body.params.applicationStatus;
   const company = req.body.params.applicationName;
-  console.log(req);
   var userData = {};
   userData = await User.findById(userID)
     .then((user) => {
@@ -168,7 +164,6 @@ exports.updateApplicationStatus = async (req, res) => {
 
 exports.createApplication = async (req, res) => {
   let applicationInputs = req.body.params;
-  console.log(applicationInputs);
   userData = await User.findById(applicationInputs.userID)
     .then((user) => {
       if (!user) {

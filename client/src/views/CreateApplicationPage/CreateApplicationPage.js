@@ -1,25 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
-import {
-  Dropdown,
-  List,
-  Button,
-  Checkbox,
-  Form,
-  Segment,
-  Header,
-} from 'semantic-ui-react';
+import { Dropdown, Button, Form, Segment, Header } from 'semantic-ui-react';
 import './CreateApplicationPage.scss';
-import ToDo from '../../components/Application/ToDo';
 import Sidebar from '../../components/Application/Sidebar';
 import ApplicationCard from '../../components/Application/ApplicationCard';
-import { phaseDictionary, phaseList } from '../../utils/phases.js';
-import CustomCheckbox from '../../components/Application/CustomCheckbox';
+import { phaseList } from '../../utils/phases.js';
 import '../../components/Application/ToDo.scss';
 import $ from 'jquery';
 import UserContext from '../../utils/UserContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// import { updateApplicationStatus } from "../../../../server/controllers/userController";
 
 const CreateApplicationPage = (props) => {
   const context = useContext(UserContext);
@@ -28,11 +17,6 @@ const CreateApplicationPage = (props) => {
 
   const [appPhase, setAppPhase] = useState('Filling Application');
 
-  useEffect(() => {
-    console.log(appPhase);
-  }, [appPhase]);
-
-  /*TEMP*/
   const [company, setCompany] = useState();
   const [jobTitle, setJobTitle] = useState();
   const [location, setLocation] = useState();
@@ -82,9 +66,6 @@ const CreateApplicationPage = (props) => {
       });
   };
 
-  let qual = ['good at write', 'good at code', 'so tired'];
-
-  //works but doesn't after refresh
   $('.todolist').focus(function () {
     if (document.getElementById('todolist').value === '') {
       document.getElementById('todolist').value += '☐ ';
@@ -92,11 +73,11 @@ const CreateApplicationPage = (props) => {
   });
   $('.todolist').keyup(function (event) {
     var keycode = event.keyCode ? event.keyCode : event.which;
-    if (keycode == '13') {
+    if (keycode === '13') {
       document.getElementById('todolist').value += '☐ ';
     }
     var txtval = document.getElementById('todolist').value;
-    if (txtval.substr(txtval.length - 1) == '\n') {
+    if (txtval.substr(txtval.length - 1) === '\n') {
       document.getElementById('todolist').value = txtval.substring(
         0,
         txtval.length - 1
@@ -111,11 +92,11 @@ const CreateApplicationPage = (props) => {
   });
   $('.bulletlist').keyup(function (event) {
     var keycode = event.keyCode ? event.keyCode : event.which;
-    if (keycode == '13') {
+    if (keycode === '13') {
       document.getElementById('bulletlist').value += '• ';
     }
     var txtval = document.getElementById('bulletlist').value;
-    if (txtval.substr(txtval.length - 1) == '\n') {
+    if (txtval.substr(txtval.length - 1) === '\n') {
       document.getElementById('bulletlist').value = txtval.substring(
         0,
         txtval.length - 1
@@ -132,21 +113,21 @@ const CreateApplicationPage = (props) => {
           <div className="application">
             <div className="column-1">
               <Form.Group widths="equal">
-              <Form.Field>
-                <label>Company</label>
-                <input
-                  placeholder="Company"
-                  onChange={(e) => setCompany(e.target.value)}
-                />
-              </Form.Field>
+                <Form.Field>
+                  <label>Company</label>
+                  <input
+                    placeholder="Company"
+                    onChange={(e) => setCompany(e.target.value)}
+                  />
+                </Form.Field>
 
-              <Form.Field>
-                <label>Job Title</label>
-                <input
-                  placeholder="Job Title"
-                  onChange={(e) => setJobTitle(e.target.value)}
-                />
-              </Form.Field>
+                <Form.Field>
+                  <label>Job Title</label>
+                  <input
+                    placeholder="Job Title"
+                    onChange={(e) => setJobTitle(e.target.value)}
+                  />
+                </Form.Field>
               </Form.Group>
 
               <Form.Group widths="equal">
