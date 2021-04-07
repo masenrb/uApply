@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Icon, Button, Sidebar, Segment, Menu } from 'semantic-ui-react';
+import React from 'react';
+import { Icon, Button, Sidebar } from 'semantic-ui-react';
 import Delete from './Delete';
 import './Sidebar.scss';
 
