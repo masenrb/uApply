@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
-import { Grid, Image, Header } from "semantic-ui-react";
-import logo from "../../assets/uApply.png";
-import SignIn from '../../components/SignIn/SignIn'
+import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
+import { Grid, Image, Header } from 'semantic-ui-react';
+import logo from '../../assets/uApply.png';
+import SignIn from '../../components/SignIn/SignIn';
 
-import "./LandingPage.scss";
+import './LandingPage.scss';
 
 export default class LandingPage extends Component {
   constructor(props) {
@@ -13,8 +13,6 @@ export default class LandingPage extends Component {
       isLoggedIn: false,
       user: 0,
     };
-    // this.isLoggedIn = this.isLoggedIn.bind(this);
-    console.log(this);
   }
 
   componentDidMount() {
@@ -22,7 +20,6 @@ export default class LandingPage extends Component {
       isLoggedIn: this.props.user,
       user: this.props.user,
     });
-    // console.log(this.props);
   }
 
   render() {
@@ -35,7 +32,7 @@ export default class LandingPage extends Component {
                 Welcome!
                 <Header.Subheader
                   style={{
-                    marginTop: "5%",
+                    marginTop: '5%',
                   }}
                 >
                   Looking for a place to organize all your job/internship
@@ -43,19 +40,23 @@ export default class LandingPage extends Component {
                 <Header.Subheader>
                   applications and keep track of your professional connections?
                 </Header.Subheader>
-                <SignIn trigger={<Button
-                  style={{
-                    marginTop: "5%",
-                  }}
-                >
-                  Get Started!
-                </Button>} />
+                <SignIn
+                  trigger={
+                    <Button
+                      style={{
+                        marginTop: '5%',
+                      }}
+                    >
+                      Get Started!
+                    </Button>
+                  }
+                />
               </Header>
             </Grid.Column>
             <Grid.Column>
               <Image
                 style={{
-                  marginLeft: "5%",
+                  marginLeft: '5%',
                 }}
                 size="massive"
                 src={logo}
