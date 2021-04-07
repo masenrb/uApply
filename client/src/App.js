@@ -17,8 +17,6 @@ function App() {
     isLoggedIn: localStorage.getItem('isLoggedIn'),
   };
 
-  console.log('App');
-  console.log(user);
   return (
     <div>
       <UserProvider value={user}>

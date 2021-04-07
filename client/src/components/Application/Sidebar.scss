@@ -1,23 +1,32 @@
 @use '../../_globals.scss';
 
 .sidebar {
-    width: 132px;
+    width: 132px !important;
+    position: fixed !important;
     height: 100%;
     background-color: globals.$dark-gray;
     margin: 0;
     float: left;
+    overflow: hidden;
 
     .trashcan {
-        margin-top: 80vh !important;
-        margin-bottom: 3rem !important;
-        margin-left: 1.6rem !important;
-        margin-right: 1rem !important;
+        float: bottom;
         background: none !important;
+        margin: 0 !important;
     }
     .ui.button {
         background: none;
         &:hover {
             transform: scale(1.2);
         }
+        position: absolute;
+        bottom: 30px;
+        margin-left: 12% !important;
+        width:100%;
+    }
+    .align-bottom {
+        position:relative;
+        height: 100%;
+        width: auto;
     }
 }

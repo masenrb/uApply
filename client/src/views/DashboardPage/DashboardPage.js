@@ -6,8 +6,6 @@ import Stats from '../../components/Stats/Stats';
 import './DashboardPage.scss';
 import UserContext from '../../utils/UserContext';
 import axios from 'axios';
-// import Header from "../../components/Header/Header";
-import UpcomingEvents from '../../components/Calender/UpcomingEvents.js';
 
 export default class DashboardPage extends Component {
   static contextType = UserContext;
@@ -24,16 +22,12 @@ export default class DashboardPage extends Component {
   }
 
   async componentDidMount() {
-    //const user = JSON.parse(localStorage.getItem('data'));
-    //this.setState({ user: user, isLoading: false });
     const olduser = JSON.parse(localStorage.getItem('data'));
-    const { isLoading } = this.state;
     var applicationOffers = [];
     var applicationInterviews = [];
     var applicationAwaitingResponse = [];
     var stats = {};
     var events = [];
-    // const { user } = this.state;
     axios
       .get('api/users/getuser', {
         params: {
@@ -41,7 +35,6 @@ export default class DashboardPage extends Component {
         },
       })
       .then((user) => {
-        console.log(user);
         user = user.data[0];
         const applications = user.applications;
         stats = user.stats;
@@ -77,19 +70,8 @@ export default class DashboardPage extends Component {
           events: events,
           stats: stats,
         });
-
-        // this.state = {
-        //   signedIn: true,
-        //   user: res.data[0],
-        // };
-        // setUser({ data: res.data[0], isLoggedIn: true });
-        // localStorage.setItem("data", JSON.stringify(res.data[0]));
-        // localStorage.setItem("isLoggedIn", true);
-        // return user somehow
       })
       .then(() => {
-        console.log(localStorage);
-        console.log(this.context);
         this.props.history.push('/Dashboard');
       })
       .catch((error) => {
@@ -134,6 +116,7 @@ export default class DashboardPage extends Component {
                 </Header>
                 <Link to="/CreateApplication">
                   <Button
+                     color="red"
                     style={{
                       marginBottom: '5%',
                       marginLeft: '35%',

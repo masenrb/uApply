@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { Card, Button, Segment, Header } from "semantic-ui-react";
-import "./UpcomingEvents.scss";
+import React, { useEffect } from 'react';
+import { Card, Button, Segment, Header } from 'semantic-ui-react';
+import './UpcomingEvents.scss';
 
 const UpcomingEvents = (props) => {
   /*
@@ -36,8 +36,6 @@ const UpcomingEvents = (props) => {
 };
 
 const Event = ({ event }) => {
-  console.log(event);
-  console.log(event.date);
   return (
     <div className="upcoming-events-card">
       <Card>
@@ -56,7 +54,6 @@ const Event = ({ event }) => {
 const daysUntil = (date) => {
   let today = new Date();
   let day = new Date(date);
-  console.log(date);
   let daysUntil = Math.ceil(
     (day.getTime() - today.getTime()) / (1000 * 3600 * 24)
   );

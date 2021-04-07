@@ -1,7 +1,7 @@
-import React from "react";
-import { Button, Header, Icon, Modal } from "semantic-ui-react";
-import "./Delete.scss";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Button, Header, Modal } from 'semantic-ui-react';
+import './Delete.scss';
+import { Link } from 'react-router-dom';
 
 const Delete = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -16,11 +16,11 @@ const Delete = (props) => {
       centered={true}
       size="mini"
       style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        height: "190px",
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        height: '190px',
       }}
     >
       <Header icon="trash" content="Delete Application" />
