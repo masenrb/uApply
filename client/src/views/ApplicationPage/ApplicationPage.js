@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Dropdown, List } from 'semantic-ui-react';
 import './ApplicationPage.scss';
 import ToDo from '../../components/Application/ToDo';
-import Sidebar from '../../components/Application/Sidebar';
+import SideBar from '../../components/Application/Sidebar';
 import ApplicationCard from '../../components/Application/ApplicationCard';
 import { phaseList } from '../../utils/phases.js';
 import CustomCheckbox from '../../components/Application/CustomCheckbox';
@@ -65,7 +65,7 @@ const ApplicationPage = (props) => {
       <div className="application-container">
         {application && appPhase && (
           <>
-            <Sidebar />
+            <SideBar />
 
             <div className="application">
               <div className="column-1">
@@ -74,7 +74,9 @@ const ApplicationPage = (props) => {
                 <h4>{application.location}</h4>
                 <div className="salary">
                   <div className="dollarsign">$</div>
-                  <h2>{application.salary.toLocaleString()}</h2>
+                  <h2 style={{ float: 'right', paddingTop: '.75rem' }}>
+                    {application.salary.toLocaleString()}
+                  </h2>
                 </div>
                 <div className="description">
                   <ApplicationCard
@@ -95,10 +97,10 @@ const ApplicationPage = (props) => {
                     <List bulleted>
                       {application.benefits.length > 0 ? (
                         application.benefits.map((b, index) => {
-                          return <List.Item key={index}>{b}</List.Item>;
+                          return <List.Item>{b}</List.Item>;
                         })
                       ) : (
-                        <>No qualificationss</>
+                        <>No benefits</>
                       )}
                     </List>
                   </ApplicationCard>
@@ -112,13 +114,13 @@ const ApplicationPage = (props) => {
                       {application.qualifications.length > 0 ? (
                         application.qualifications.map((q, index) => {
                           return (
-                            <List.Item key={index}>
+                            <List.Item>
                               <CustomCheckbox item={q} index={index} />
                             </List.Item>
                           );
                         })
                       ) : (
-                        <>No qualificationss</>
+                        <>No qualifications</>
                       )}
                     </List>
                   </ApplicationCard>

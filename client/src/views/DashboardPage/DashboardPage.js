@@ -116,6 +116,7 @@ export default class DashboardPage extends Component {
                 </Header>
                 <Link to="/CreateApplication">
                   <Button
+                     color="red"
                     style={{
                       marginBottom: '5%',
                       marginLeft: '35%',
