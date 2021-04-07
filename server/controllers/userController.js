@@ -1,15 +1,14 @@
-const { set } = require("mongoose");
-const User = require("../models/userModel.js");
-var ObjectID = require("mongodb").ObjectID;
+const { set } = require('mongoose');
+const User = require('../models/userModel.js');
+var ObjectID = require('mongodb').ObjectID;
 
 //Post request create a user
 //Needs to be fixed
 exports.createUser = async (req, res) => {
   const user = req.body;
-  console.log(req.query);
   if (!user) {
     return res.status(400).send({
-      error: "User not found",
+      error: 'User not found',
     });
   }
   await new User(user)
@@ -31,7 +30,7 @@ exports.login = async (req, res) => {
     .then((user) => {
       if (!user[0]) {
         return res.status(400).send({
-          error: "Username and/or password incorrect",
+          error: 'Username and/or password incorrect',
         });
       }
       //Check for password
@@ -39,13 +38,13 @@ exports.login = async (req, res) => {
         res.json(user);
       } else {
         return res.status(400).send({
-          error: "Username and/or password incorrect",
+          error: 'Username and/or password incorrect',
         });
       }
     })
     .catch((err) => {
       res.status(400).send({
-        error: err.message || "An unknown error has occurred.",
+        error: err.message || 'An unknown error has occurred.',
       });
     });
 };
@@ -55,7 +54,7 @@ exports.getAllUsers = async (req, res) => {
   await User.find({}, (err, data) => {
     if (err)
       return res.status(400).send({
-        message: err.message || "An unknown error occurred",
+        message: err.message || 'An unknown error occurred',
       });
     res.json(data);
   });
@@ -68,14 +67,14 @@ exports.getUser = async (req, res) => {
     .then((user) => {
       if (!user[0]) {
         return res.status(400).send({
-          error: "User not found",
+          error: 'User not found',
         });
       }
       res.json(user);
     })
     .catch((err) => {
       res.status(400).send({
-        error: err.message || "An unknown error has occurred.",
+        error: err.message || 'An unknown error has occurred.',
       });
     });
 };
@@ -86,10 +85,8 @@ exports.getAllApplications = async (req, res) => {
   await User.find({ userName: user }, (err, data) => {
     if (err)
       return res.status(400).send({
-        message: err.message || "An unknown error occurred",
+        message: err.message || 'An unknown error occurred',
       });
-    //Print out to see the retun
-    // console.log(data[0].applications);
     res.json(data[0].applications);
   });
 };
@@ -102,7 +99,7 @@ exports.getApplicationByCompany = async (req, res) => {
   await User.find({ userName: user }).then((user) => {
     if (!user[0])
       return res.status(400).send({
-        message: "User not found",
+        message: 'User not found',
       });
 
     //Loop through applications array and check for match
@@ -112,28 +109,28 @@ exports.getApplicationByCompany = async (req, res) => {
       }
     }
     return res.status(400).send({
-      message: "Company not found",
+      message: 'Company not found',
     });
   });
 };
 
 exports.updateApplicationStatus = async (req, res) => {
-  let userID = req.query.userID;
-  const newApplicationStatus = req.query.applicationStatus;
-  const company = req.query.applicationName;
+  let userID = req.body.params.userID;
+  const newApplicationStatus = req.body.params.applicationStatus;
+  const company = req.body.params.applicationName;
   var userData = {};
   userData = await User.findById(userID)
     .then((user) => {
       if (!user) {
         return res.status(400).send({
-          message: "User not found",
+          message: 'User not found',
         });
       }
       return user;
     })
     .catch(() => {
       return res.status(400).send({
-        error: "Incorrect User ID catch",
+        error: 'Incorrect User ID catch',
       });
     });
 
@@ -147,7 +144,7 @@ exports.updateApplicationStatus = async (req, res) => {
     if (userData.applications[i].companyName === company) {
       if (!newApplicationStatus) {
         return res.status(400).send({
-          error: "No status input",
+          error: 'No status input',
         });
       }
       userData.applications[i].status = newApplicationStatus;
@@ -160,19 +157,18 @@ exports.updateApplicationStatus = async (req, res) => {
     return res.json(userData);
   } else {
     return res.status(400).send({
-      message: "Not updated",
+      message: 'Not updated',
     });
   }
 };
 
 exports.createApplication = async (req, res) => {
   let applicationInputs = req.body.params;
-  console.log(applicationInputs);
   userData = await User.findById(applicationInputs.userID)
     .then((user) => {
       if (!user) {
         return res.status(400).send({
-          message: "User not found",
+          message: 'User not found',
         });
       }
       userFound = true;
@@ -180,33 +176,33 @@ exports.createApplication = async (req, res) => {
     })
     .catch(() => {
       return res.status(400).send({
-        error: "Incorrect User ID catch",
+        error: 'Incorrect User ID catch',
       });
     });
   let newApplication = {
-    companyName: "",
-    jobTitle: "",
-    location: "",
-    description: "",
+    companyName: '',
+    jobTitle: '',
+    location: '',
+    description: '',
     salary: 0,
     benefits: [],
     qualifications: [],
     toDo: [],
-    status: "",
+    status: '',
     contacts: [],
     notes: [],
     events: [],
     notifications: {
-      feedbackEmails: "bool",
-      notificationEmails: "bool",
-      upcomingEvents: "bool",
-      weeklyReport: "bool",
-      agenda: "bool",
+      feedbackEmails: 'bool',
+      notificationEmails: 'bool',
+      upcomingEvents: 'bool',
+      weeklyReport: 'bool',
+      agenda: 'bool',
     },
     applicationStats: {
       interviewCount: 0,
-      offer: "bool",
-      rejection: "bool",
+      offer: 'bool',
+      rejection: 'bool',
     },
   };
 
@@ -352,7 +348,7 @@ exports.deleteApplication = async (req, res) => {
     .then((user) => {
       if (!user) {
         return res.status(400).send({
-          message: "User not found",
+          message: 'User not found',
         });
       }
       return user;
@@ -360,14 +356,14 @@ exports.deleteApplication = async (req, res) => {
     .catch(() => {
       userFound = false;
       return res.status(400).send({
-        error: "Incorrect User ID",
+        error: 'Incorrect User ID',
       });
     });
   if (userData._id != null) {
-    return res.json({ message: "Deleted application" });
+    return res.json({ message: 'Deleted application' });
   } else if (userFound) {
     res.status(400).send({
-      error: "error",
+      error: 'error',
     });
   } else {
     return;
@@ -380,7 +376,7 @@ exports.getAllStats = async (req, res) => {
   await User.find({ userName: user }, (err, data) => {
     if (err)
       return res.status(200).send({
-        message: err.message || "An unknown error occurred",
+        message: err.message || 'An unknown error occurred',
       });
 
     return res.json(data[0].stats);
