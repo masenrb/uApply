@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Dropdown, List } from 'semantic-ui-react';
 import './ApplicationPage.scss';
 import ToDo from '../../components/Application/ToDo';
@@ -7,6 +7,7 @@ import ApplicationCard from '../../components/Application/ApplicationCard';
 import { phaseList } from '../../utils/phases.js';
 import CustomCheckbox from '../../components/Application/CustomCheckbox';
 import axios from 'axios';
+import UserContext from '../../utils/UserContext';
 
 /* ISSUES
  * very messy, very hardcoded.
@@ -16,6 +17,25 @@ import axios from 'axios';
 const ApplicationPage = (props) => {
   const [application, setApplication] = useState(null);
   const [appPhase, setAppPhase] = useState(null);
+
+  const userContext = useContext(UserContext);
+
+  const handleNewPhase = (newPhase) => {
+    let userID = userContext.user.data._id;
+    let company = application.companyName;
+    setAppPhase(newPhase);
+    axios
+      .post('/api/users/update/ApplicationStatus', {
+        params: {
+          userID: userID,
+          applicationStatus: newPhase,
+          applicationName: company,
+        },
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     const id = props.match.params.applicationId;
@@ -111,7 +131,7 @@ const ApplicationPage = (props) => {
                     selected
                     fluid
                     options={phaseList}
-                    onChange={(e) => setAppPhase(e.target.textContent)}
+                    onChange={(e) => handleNewPhase(e.target.textContent)}
                   />
                 </div>
                 <div className="todo-wrapper">
