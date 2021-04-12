@@ -81,9 +81,10 @@ $padding: 1rem;
     width: 70px;
     font-size: 50px;
     position: absolute;
-    top: 0;
+    top: 35px;
     left: 0;
     margin-left: 6px;
+    z-index:500;
   }
   
   .faux-sidebar {
