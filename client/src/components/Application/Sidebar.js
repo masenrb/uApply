@@ -16,6 +16,8 @@ const SideBar = (props) => {
     >
       <div className="align-bottom">
         <Delete
+          userID={props.userID}
+          companyName={props.companyName}
           trigger={
             <Button className="trashcan">
               <Icon name="trash alternate" size="huge" color="grey" />

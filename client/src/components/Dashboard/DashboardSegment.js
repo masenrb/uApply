@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown, Card, Button, Segment } from 'semantic-ui-react';
-import { phaseDictionary, phaseList } from '../../utils/phases.js';
+import { Dropdown, Button, Segment } from 'semantic-ui-react';
+import { phaseList } from '../../utils/phases.js';
 import './DashboardSegment.scss';
 import axios from 'axios';
 import UserContext from '../../utils/UserContext';
@@ -20,7 +20,6 @@ const DashboardSegment = (props) => {
   let propstitle = props.value.jobTitle;
   let propscompany = props.value.companyName;
 
-  const phase = phaseDictionary[propsphase];
   const [appPhase, setAppPhase] = useState(propsphase);
 
   const handleNewPhase = (newPhase) => {
