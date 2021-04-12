@@ -65,7 +65,10 @@ const ApplicationPage = (props) => {
       <div className="application-container">
         {application && appPhase && (
           <>
-            <SideBar />
+            <SideBar
+              userID={userContext.user.data._id}
+              companyName={application.companyName}
+            />
 
             <div className="application">
               <div className="column-1">
