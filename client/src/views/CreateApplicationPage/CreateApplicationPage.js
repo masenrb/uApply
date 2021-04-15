@@ -107,6 +107,14 @@ const CreateApplicationPage = (props) => {
   return (
     <>
       <div className="application-container">
+        <div class="submit">
+          <Link to="/Dashboard">
+            <Button color="red" onClick={save}>
+              Save Application
+            </Button>
+          </Link>
+        </div>
+
         <Sidebar />
 
         <Form>
@@ -193,14 +201,6 @@ const CreateApplicationPage = (props) => {
                     ></textarea>
                   </form>
                 </ApplicationCard>
-              </div>
-
-              <div class="submit">
-                <Link to="/Dashboard">
-                  <Button color="red" onClick={save}>
-                    Save Application
-                  </Button>
-                </Link>
               </div>
             </div>
 
