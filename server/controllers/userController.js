@@ -228,7 +228,7 @@ exports.updateApplicationStatus = async (req, res) => {
 };
 
 exports.createApplication = async (req, res) => {
-  let applicationInputs = req.query;
+  let applicationInputs = req.body.params;
   let userFound = false;
   userData = await User.findById(applicationInputs.userID)
     .then((user) => {
