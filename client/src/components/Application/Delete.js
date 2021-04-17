@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Button, Header, Modal } from 'semantic-ui-react';
 import './Delete.scss';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import UserContext from '../../utils/UserContext';
+
 
 const Delete = (props) => {
   const [open, setOpen] = React.useState(false);
+  const context = useContext(UserContext);
+  const { user, setUser } = context;
+
 
   const handleDelete = () => {
+    console.log(props.userID);
     setOpen(false);
     axios
       .delete('/api/users/deleteApplication', {
@@ -17,7 +23,15 @@ const Delete = (props) => {
         },
       })
       .then(() => {
-        window.location.href = '/Dashboard';
+        let index = user.data.applications.findIndex((item) => item.companyName === props.companyName)
+        console.log(index);
+        user.data.applications.splice(index, 1)
+        setUser({ data: user, isLoggedIn: true });
+        localStorage.setItem('data', JSON.stringify(user.data));
+        //window.location.href = '/Dashboard';
+      })
+      .then(() => {
+        window.location.href="/Dashboard";
       })
       .catch((error) => {
         console.log(error);
@@ -47,11 +61,9 @@ const Delete = (props) => {
         <p>Are you sure you wish to delete this application?</p>
       </Modal.Content>
       <Modal.Actions>
-        <Link to="/Dashboard">
           <Button color="red" onClick={() => handleDelete()}>
             Yes
           </Button>
-        </Link>
         <Button color="blue" onClick={() => setOpen(false)}>
           No
         </Button>

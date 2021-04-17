@@ -17,14 +17,14 @@ const CreateApplicationPage = (props) => {
 
   const [appPhase, setAppPhase] = useState('Filling Application');
 
-  const [company, setCompany] = useState();
-  const [jobTitle, setJobTitle] = useState();
-  const [location, setLocation] = useState();
-  const [salary, setSalary] = useState();
-  const [description, setDescription] = useState();
-  const [benefits, setBenefits] = useState();
-  const [qualifications, setQualifications] = useState();
-  const [todo, setTodo] = useState();
+  const [company, setCompany] = useState(null);
+  const [jobTitle, setJobTitle] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [salary, setSalary] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [benefits, setBenefits] = useState(null);
+  const [qualifications, setQualifications] = useState(null);
+  const [todo, setTodo] = useState(null);
 
   const save = () => {
     axios
@@ -45,6 +45,8 @@ const CreateApplicationPage = (props) => {
         },
       })
       .then((res) => {
+        console.log(UserContext);
+        console.log(user.data, user.data.applications)
         user.data.applications.push({
           companyName: company,
           jobTitle: jobTitle,
@@ -56,10 +58,12 @@ const CreateApplicationPage = (props) => {
           qualifications: qualifications,
           todo: todo,
         });
+        setUser({data: user, isLoggedIn: true})
+        console.log(user.data);
         localStorage.setItem('data', JSON.stringify(user.data));
       })
       .then(() => {
-        setUser({ data: user, isLoggedIn: true });
+        window.location.href="/Dashboard";
       })
       .catch((error) => {
         console.log(error);
@@ -108,14 +112,13 @@ const CreateApplicationPage = (props) => {
     <>
       <div className="application-container">
         <div class="submit">
-          <Link to="/Dashboard">
-            <Button color="red" onClick={save}>
+            <Button color="red" onClick={() => save()}>
               Save Application
             </Button>
-          </Link>
         </div>
 
-        <Sidebar />
+        <Sidebar
+        />
 
         <Form>
           <div className="application">

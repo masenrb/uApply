@@ -65,6 +65,7 @@ const ApplicationPage = (props) => {
       <div className="application-container">
         {application && appPhase && (
           <>
+          {console.log(userContext)}
             <SideBar
               userID={userContext.user.data._id}
               companyName={application.companyName}

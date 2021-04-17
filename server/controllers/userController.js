@@ -63,8 +63,10 @@ exports.getAllUsers = async (req, res) => {
 //Returns user given username
 exports.getUser = async (req, res) => {
   let user = req.query.username;
+  console.log("getting...");
   await User.find({ userName: user })
     .then((user) => {
+      console.log(user);
       if (!user[0]) {
         return res.status(400).send({
           error: 'User not found',
@@ -73,6 +75,7 @@ exports.getUser = async (req, res) => {
       res.json(user);
     })
     .catch((err) => {
+      console.log("AH");
       res.status(400).send({
         error: err.message || 'An unknown error has occurred.',
       });
@@ -148,7 +151,7 @@ exports.updateApplicationStatus = async (req, res) => {
           error: 'No status input',
         });
       }
-
+      /*
       if (newApplicationStatus === 'Filling Application' || newApplicationStatus === "Awaiting Response") {
         userData.stats.interviewCount -= userData.applications[i].applicationStats.interviewCount;
         userData.applications[i].applicationStats.interviewCount = 0;
@@ -207,7 +210,7 @@ exports.updateApplicationStatus = async (req, res) => {
       } else {
         updateStatus = false;
       }
-
+      */
       userData.applications[i].status = newApplicationStatus;
       foundCompany = true;
     }
@@ -228,10 +231,12 @@ exports.updateApplicationStatus = async (req, res) => {
 };
 
 exports.createApplication = async (req, res) => {
+  console.log(req.body.params);
   let applicationInputs = req.body.params;
   let userFound = false;
   userData = await User.findById(applicationInputs.userID)
     .then((user) => {
+      console.log(user);
       if (!user) {
         return res.status(400).send({
           message: 'User not found',
@@ -396,11 +401,13 @@ exports.createApplication = async (req, res) => {
     }
   }
   if (userFound) {
+    console.log(newApplication);
     userData.applications.push(newApplication);
     userData.stats.totalApplications += 1;
     await new User(userData).save();
     return res.json(userData);
   }
+  console.log("user not found??")
   return;
 };
 

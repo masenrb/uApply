@@ -42,12 +42,20 @@ export default class DashboardPage extends Component {
       .then((user) => {
         user = user.data[0];
         const applications = user.applications;
-        stats = user.stats;
+        console.log(applications);
+        stats = {
+          interviewCount: 0,
+          offers: 0,
+          rejections: 0,
+          totalApplications: 0
+        }
         for (var i = 0; i < applications.length; i++) {
+          stats.totalApplications +=1;
           if (applications[i].status === 'Offer Received') {
             applicationOffers.push(
               <DashboardCard key={i} value={applications[i]} />
             );
+            stats.offers +=1;
           } else if (applications[i].status === 'Awaiting Response') {
             applicationAwaitingResponse.push(
               <DashboardCard key={i} value={applications[i]} />
@@ -60,6 +68,7 @@ export default class DashboardPage extends Component {
             applicationInterviews.push(
               <DashboardCard key={i} value={applications[i]} />
             );
+            stats.interviewCount += 1;
           } else if (applications[i].status === 'Filling Application') {
             applicationFillingApplication.push(
               <DashboardSegment
@@ -74,6 +83,7 @@ export default class DashboardPage extends Component {
                 value={applications[i]}
               ></DashboardSegment>
             );
+            stats.rejections += 1;
           }
           for (var j = 0; j < applications[i].events.length; j++) {
             events.push(applications[i].events[j]);
